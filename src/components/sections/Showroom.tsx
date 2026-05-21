@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Showroom() {
   return (
     <section
@@ -23,8 +25,8 @@ export default function Showroom() {
 
             <div className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-white/5 pt-8">
               <Info label="Indirizzo" value="Via Durini 17, 20122 Milano" />
-              <Info label="Telefono" value="+39 02 0000 0000" />
-              <Info label="Email" value="milano@binova.it" />
+              <Info label="Telefono" value="+39 02 2906 1826" />
+              <Info label="Email" value="info@binovamilano.it" />
               <Info label="Orari" value="Lun–Sab · 10:00–19:00" />
             </div>
 
@@ -49,27 +51,35 @@ export default function Showroom() {
             </div>
           </div>
 
-          {/* Right — visual placeholder */}
-          <div className="relative aspect-[4/5] overflow-hidden border border-white/5 bg-gradient-to-br from-binova-stone via-binova-ink to-black lg:aspect-auto lg:min-h-[640px]">
-            <div className="absolute inset-0 opacity-30" style={{
-              backgroundImage: "radial-gradient(circle at 30% 30%, rgba(201,179,120,0.18), transparent 50%)",
-            }} />
+          {/* Right — real showroom photo */}
+          <div className="relative aspect-[4/5] overflow-hidden border border-white/5 lg:aspect-auto lg:min-h-[640px]">
+            <Image
+              src="/images/showroom/showroom-1.jpg"
+              alt="Showroom Binova Milano, Via Durini 17"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-binova-black/80" />
+
             <div className="absolute inset-0 flex flex-col justify-between p-8 lg:p-12">
               <div className="flex items-center gap-3">
-                <span className="grid h-7 w-7 place-items-center border border-binova-bone/80">
+                <span className="grid h-7 w-7 place-items-center border border-binova-bone/90 backdrop-blur-sm">
                   <span className="h-2.5 w-2.5 bg-binova-bone" />
                 </span>
-                <span className="font-display text-lg text-binova-bone">Binova Milano</span>
+                <span className="font-display text-lg text-binova-bone drop-shadow-lg">
+                  Binova Milano
+                </span>
               </div>
 
               <div className="flex flex-col gap-3">
-                <span className="text-[10px] uppercase tracking-[0.4em] text-binova-bone/50">
+                <span className="text-[10px] uppercase tracking-[0.4em] text-binova-bone/80">
                   Flagship store
                 </span>
-                <span className="font-display text-4xl text-binova-bone lg:text-5xl">
+                <span className="font-display text-4xl text-binova-bone lg:text-5xl drop-shadow-lg">
                   350 m²
                 </span>
-                <span className="text-binova-bone/60">
+                <span className="text-binova-bone/80">
                   di esperienza Binova nel cuore del design milanese.
                 </span>
               </div>

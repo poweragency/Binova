@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Heritage() {
   return (
     <section
@@ -28,18 +30,22 @@ export default function Heritage() {
               <Card
                 title="Made in Italy."
                 body="Filiera completamente italiana. Legno, metalli, grès, vetro lavorati nei nostri stabilimenti."
+                image="/images/heritage/atmosphere-1.jpg"
               />
               <Card
                 title="Sostenibilità."
                 body="Laccatura a eccimeri, legni compositi sostenibili, materiali a chilometro tracciato."
+                image="/images/heritage/atmosphere-2.jpg"
               />
               <Card
                 title="Artigianato 4.0."
                 body="La precisione del CNC, il giudizio dell'artigiano. Ogni cucina passa entrambe le mani."
+                image="/images/heritage/atmosphere-3.jpg"
               />
               <Card
                 title="Architettura."
                 body="Non vendiamo mobili. Disegniamo lo spazio che li ospiterà."
+                image="/images/realizzazioni/contract.jpg"
               />
             </div>
           </div>
@@ -58,12 +64,32 @@ function Timeline({ year, event }: { year: string; event: string }) {
   );
 }
 
-function Card({ title, body }: { title: string; body: string }) {
+function Card({
+  title,
+  body,
+  image,
+}: {
+  title: string;
+  body: string;
+  image: string;
+}) {
   return (
-    <div className="group border border-white/[0.06] bg-binova-stone p-6 transition-colors hover:border-binova-gold/30 lg:p-8">
-      <h3 className="font-display text-2xl text-binova-bone lg:text-3xl">{title}</h3>
-      <p className="mt-3 text-sm text-binova-bone/55 lg:text-[15px]">{body}</p>
-      <span className="mt-6 block h-px w-8 bg-binova-gold/30 transition-all duration-500 group-hover:w-16 group-hover:bg-binova-gold" />
+    <div className="group relative overflow-hidden border border-white/[0.06] bg-binova-stone transition-colors hover:border-binova-gold/30">
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover transition-transform duration-1000 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-binova-stone via-binova-stone/40 to-transparent" />
+      </div>
+      <div className="p-6 lg:p-8">
+        <h3 className="font-display text-2xl text-binova-bone lg:text-3xl">{title}</h3>
+        <p className="mt-3 text-sm text-binova-bone/55 lg:text-[15px]">{body}</p>
+        <span className="mt-6 block h-px w-8 bg-binova-gold/30 transition-all duration-500 group-hover:w-16 group-hover:bg-binova-gold" />
+      </div>
     </div>
   );
 }

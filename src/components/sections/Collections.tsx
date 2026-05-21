@@ -1,77 +1,84 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
-const collections = [
+type Collection = {
+  code: string;
+  name: string;
+  tag: string;
+  desc: string;
+  image?: string;
+};
+
+const collections: Collection[] = [
   {
     code: "01",
     name: "Avola",
     tag: "Telaio architettonico",
     desc: "Linee verticali e orizzontali ritmate da un telaio sottilissimo a vista. La firma più recente di Binova.",
-    accent: "from-stone-700 to-stone-900",
+    image: "/images/collections/avola.jpg",
   },
   {
     code: "02",
     name: "Bluna",
     tag: "Gola d'eccellenza",
     desc: "L'estetica della gola portata al suo apice. Razionale, moderna, taglio sartoriale.",
-    accent: "from-zinc-800 to-zinc-950",
+    image: "/images/collections/bluna.jpg",
   },
   {
     code: "03",
     name: "Vogue",
     tag: "Tagli verticali",
     desc: "Apertura ante senza maniglie a vista, ritmo grafico, presenza scultorea.",
-    accent: "from-neutral-800 to-neutral-950",
+    image: "/images/collections/vogue.jpg",
   },
   {
     code: "04",
     name: "Lab",
     tag: "Volumi essenziali",
     desc: "Volumi importanti, linee decise. Per chi cerca la cucina come elemento d'architettura.",
-    accent: "from-stone-800 to-black",
+    image: "/images/collections/lab.jpg",
   },
   {
     code: "05",
     name: "Scava",
     tag: "Sottrazione",
     desc: "La materia scavata. Geometrie ottenute per sottrazione, atmosfera minerale.",
-    accent: "from-zinc-700 to-zinc-900",
+    image: "/images/collections/scava.jpg",
   },
   {
     code: "06",
     name: "Mantis",
     tag: "Precisione",
     desc: "Strutture leggere, dettagli da orologeria. Ingegneria sussurrata.",
-    accent: "from-neutral-700 to-neutral-950",
+    image: "/images/collections/mantis.jpg",
   },
   {
     code: "07",
     name: "Regula",
     tag: "Misura",
     desc: "Ritmo regolare, proporzioni classiche rilette in chiave contemporanea.",
-    accent: "from-stone-700 to-stone-950",
+    image: "/images/collections/regula.jpg",
   },
   {
     code: "08",
     name: "Ono",
     tag: "Essenzialità",
     desc: "Riduzione al gesto necessario. Forma pura, materia che parla.",
-    accent: "from-zinc-800 to-black",
+    image: "/images/collections/ono.jpg",
   },
   {
     code: "09",
     name: "Balance",
     tag: "Boho contemporaneo",
     desc: "Vasche integrate per aromatiche, materie calde, atmosfera accogliente.",
-    accent: "from-stone-600 to-stone-900",
   },
   {
     code: "10",
     name: "Hily",
     tag: "Verticalità",
     desc: "Slancio verso l'alto, sviluppo verticale, vetrine integrate.",
-    accent: "from-neutral-800 to-neutral-950",
   },
 ];
 
@@ -101,7 +108,7 @@ export default function Collections() {
           </p>
         </div>
 
-        {/* Collections list — luxury editorial layout */}
+        {/* Collections list — editorial with hover image preview */}
         <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
           {collections.map((collection, i) => (
             <a
@@ -146,15 +153,31 @@ export default function Collections() {
                 </svg>
               </span>
 
-              {/* Hover preview gradient (placeholder for future image swap) */}
+              {/* Hover preview — real kitchen image */}
               <div
-                className={`pointer-events-none absolute right-6 top-1/2 hidden h-32 w-48 -translate-y-1/2 rounded-sm bg-gradient-to-br ${collection.accent} transition-all duration-700 lg:block ${
+                className={`pointer-events-none absolute right-6 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden rounded-sm bg-binova-stone shadow-2xl shadow-black/50 transition-all duration-700 lg:block ${
                   hovered === i
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-4"
                 }`}
                 aria-hidden
-              />
+              >
+                {collection.image ? (
+                  <Image
+                    src={collection.image}
+                    alt={collection.name}
+                    fill
+                    sizes="256px"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-stone-700 to-stone-950">
+                    <span className="text-[10px] uppercase tracking-[0.4em] text-binova-bone/40">
+                      Coming soon
+                    </span>
+                  </div>
+                )}
+              </div>
             </a>
           ))}
         </div>
