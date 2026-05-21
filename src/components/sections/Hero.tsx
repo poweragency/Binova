@@ -43,7 +43,7 @@ export default function Hero() {
         <div className="flex items-center gap-4">
           <span className="h-px w-12 bg-binova-gold/60" />
           <span className="text-[10px] uppercase tracking-[0.4em] text-binova-bone/80">
-            Collezione 2026 · Salone del Mobile.Milano
+            Collezione 2026 · Salone del Mobile Milano
           </span>
         </div>
 
