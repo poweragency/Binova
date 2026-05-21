@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { collections, getCollectionBySlug } from "@/data/collections";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Contacts from "@/components/sections/Contacts";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -234,6 +235,7 @@ export default async function CollectionPage({ params }: Props) {
         </div>
       </section>
 
+      <Contacts />
       <Footer />
     </main>
   );

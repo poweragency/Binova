@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer
-      id="contact"
       className="relative border-t border-white/[0.06] bg-binova-black px-6 pb-10 pt-20 max-md:pt-12 lg:px-12 lg:pt-24"
       style={{
         paddingBottom: "max(2rem, env(safe-area-inset-bottom))",

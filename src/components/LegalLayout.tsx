@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Contacts from "./sections/Contacts";
 
 type Props = {
   eyebrow: string;
@@ -62,6 +63,7 @@ export default function LegalLayout({
         </article>
       </section>
 
+      <Contacts />
       <Footer />
     </main>
   );

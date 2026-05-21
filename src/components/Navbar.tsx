@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 
 const links = [
   { label: "Cucine", href: "/#collections" },
-  { label: "Heritage", href: "/#heritage" },
-  { label: "Showroom", href: "/#showroom" },
-  { label: "Contract", href: "/#contract" },
+  { label: "Heritage", href: "/heritage" },
+  { label: "Showroom", href: "/showroom" },
+  { label: "Contract", href: "/contract" },
+  { label: "Eventi", href: "/eventi" },
 ];
 
 export default function Navbar() {
@@ -86,9 +87,9 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA — unchanged */}
+          {/* Desktop CTA — points to #contact on current page */}
           <Link
-            href="/#contact"
+            href="#contact"
             className="group hidden items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-binova-bone/80 hover:text-binova-gold transition-colors lg:flex"
           >
             <span className="hidden sm:inline">Prenota visita</span>
@@ -209,7 +210,7 @@ export default function Navbar() {
             }}
           >
             <Link
-              href="/#contact"
+              href="#contact"
               onClick={() => setMobileOpen(false)}
               className="group flex w-full items-center justify-between border border-binova-bone/30 px-6 py-5 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-colors hover:border-binova-gold hover:text-binova-gold"
             >

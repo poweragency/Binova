@@ -1,8 +1,7 @@
 import Navbar from "./Navbar";
 import Hero from "./sections/Hero";
 import Collections from "./sections/Collections";
-import Heritage from "./sections/Heritage";
-import Showroom from "./sections/Showroom";
+import Contacts from "./sections/Contacts";
 import Footer from "./Footer";
 
 export default function Site() {
@@ -11,8 +10,7 @@ export default function Site() {
       <Navbar />
       <Hero />
       <Collections />
-      <Heritage />
-      <Showroom />
+      <Contacts />
       <Footer />
     </>
   );
