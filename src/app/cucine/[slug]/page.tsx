@@ -147,7 +147,7 @@ export default async function CollectionPage({ params }: Props) {
             </ul>
 
             <a
-              href="#book"
+              href="#contact"
               className="group mt-10 inline-flex items-center gap-4 border border-binova-bone/30 px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-all duration-500 hover:border-binova-gold hover:text-binova-gold"
             >
               Richiedi {collection.name}
