@@ -17,7 +17,7 @@ export default function Contacts() {
 
       <div className="relative mx-auto max-w-[1400px]">
         <div className="grid gap-12 max-md:gap-8 lg:grid-cols-12 lg:gap-20">
-          <div className="lg:col-span-7">
+          <div data-reveal className="lg:col-span-7">
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Prenota visita
             </span>
@@ -54,7 +54,7 @@ export default function Contacts() {
             </div>
           </div>
 
-          <aside className="lg:col-span-5 lg:border-l lg:border-white/[0.06] lg:pl-12">
+          <aside data-reveal className="lg:col-span-5 lg:border-l lg:border-white/[0.06] lg:pl-12">
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Showroom Milano
             </span>

@@ -10,7 +10,10 @@ export default function Collections() {
     >
       <div className="mx-auto max-w-[1600px]">
         {/* Section header */}
-        <div className="mb-20 flex flex-col gap-6 max-lg:mb-12 max-md:gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div
+          data-reveal
+          className="mb-20 flex flex-col gap-6 max-lg:mb-12 max-md:gap-4 lg:flex-row lg:items-end lg:justify-between"
+        >
           <div className="flex flex-col gap-4">
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Collezioni
@@ -35,6 +38,7 @@ export default function Collections() {
             <Link
               key={collection.code}
               href={`/cucine/${collection.slug}`}
+              data-reveal
               className="group flex flex-col gap-6"
             >
               {/* Image — always visible, 3:2 photographic aspect */}

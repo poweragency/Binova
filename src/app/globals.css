@@ -100,3 +100,44 @@ body.no-scroll {
   touch-action: none;
 }
 
+/* Scroll-reveal: anything marked with data-reveal starts hidden and
+   eases into view when it enters the viewport (toggled by JS). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+[data-reveal][data-revealed] {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Custom cursor — only when user actually has a fine pointer */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"] {
+    cursor: none;
+  }
+}
+
+/* FadeImage utility: img receives data-loaded=true after onLoad */
+img[data-fade] {
+  opacity: 0;
+  transition: opacity 700ms ease-out;
+}
+img[data-fade][data-loaded="true"] {
+  opacity: 1;
+}
+

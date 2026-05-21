@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import CustomCursor from "@/components/CustomCursor";
 import PageLoader from "@/components/PageLoader";
+import RevealOnScroll from "@/components/RevealOnScroll";
 import SmoothAnchors from "@/components/SmoothAnchors";
 import "./globals.css";
 
@@ -37,6 +39,8 @@ export default function RootLayout({
       <body>
         <PageLoader />
         <SmoothAnchors />
+        <RevealOnScroll />
+        <CustomCursor />
         {children}
       </body>
     </html>

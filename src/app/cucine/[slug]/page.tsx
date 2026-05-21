@@ -6,6 +6,7 @@ import { collections, getCollectionBySlug } from "@/data/collections";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contacts from "@/components/sections/Contacts";
+import GalleryLightbox from "@/components/GalleryLightbox";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -172,23 +173,10 @@ export default async function CollectionPage({ params }: Props) {
             </h2>
           </div>
 
-          <div className="flex flex-col gap-6 max-md:gap-3 lg:gap-10">
-            {collection.gallery.slice(1).map((src, i) => (
-              <figure
-                key={src}
-                className="relative aspect-[3/1] max-md:aspect-[16/10] w-full overflow-hidden bg-binova-stone"
-              >
-                <Image
-                  src={src}
-                  alt={`${collection.name} — vista ${i + 2}`}
-                  fill
-                  quality={92}
-                  sizes="100vw"
-                  className="object-cover"
-                />
-              </figure>
-            ))}
-          </div>
+          <GalleryLightbox
+            images={collection.gallery.slice(1)}
+            altPrefix={collection.name}
+          />
         </section>
       )}
 
