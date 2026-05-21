@@ -113,16 +113,6 @@ export default function Collections() {
             </Link>
           ))}
         </div>
-
-        <div className="mt-24 flex justify-center">
-          <a
-            href="#collections-all"
-            className="group flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 hover:text-binova-bone transition-colors"
-          >
-            <span className="h-px w-12 bg-binova-bone/30 transition-all duration-500 group-hover:w-24 group-hover:bg-binova-gold" />
-            Scopri tutte le finiture
-          </a>
-        </div>
       </div>
     </section>
   );
