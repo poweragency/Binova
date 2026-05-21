@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const links = [
   { label: "Cucine", href: "/" },
@@ -24,6 +24,17 @@ export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const previousPath = useRef(pathname);
+
+  // When the user lands on the home from a different route, force scroll
+  // to top. Next.js scroll-restoration can otherwise replay the position
+  // from a previous visit and drop them mid-page.
+  useEffect(() => {
+    if (previousPath.current !== "/" && pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+    previousPath.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
