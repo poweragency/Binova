@@ -1,90 +1,8 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
-
-type Collection = {
-  code: string;
-  name: string;
-  tag: string;
-  desc: string;
-  image?: string;
-};
-
-const collections: Collection[] = [
-  {
-    code: "01",
-    name: "Avola",
-    tag: "Telaio architettonico",
-    desc: "Linee verticali e orizzontali ritmate da un telaio sottilissimo a vista. La firma più recente di Binova.",
-    image: "/images/collections/avola.jpg",
-  },
-  {
-    code: "02",
-    name: "Bluna",
-    tag: "Gola d'eccellenza",
-    desc: "L'estetica della gola portata al suo apice. Razionale, moderna, taglio sartoriale.",
-    image: "/images/collections/bluna.jpg",
-  },
-  {
-    code: "03",
-    name: "Vogue",
-    tag: "Tagli verticali",
-    desc: "Apertura ante senza maniglie a vista, ritmo grafico, presenza scultorea.",
-    image: "/images/collections/vogue.jpg",
-  },
-  {
-    code: "04",
-    name: "Lab",
-    tag: "Volumi essenziali",
-    desc: "Volumi importanti, linee decise. Per chi cerca la cucina come elemento d'architettura.",
-    image: "/images/collections/lab.jpg",
-  },
-  {
-    code: "05",
-    name: "Scava",
-    tag: "Sottrazione",
-    desc: "La materia scavata. Geometrie ottenute per sottrazione, atmosfera minerale.",
-    image: "/images/collections/scava.jpg",
-  },
-  {
-    code: "06",
-    name: "Mantis",
-    tag: "Precisione",
-    desc: "Strutture leggere, dettagli da orologeria. Ingegneria sussurrata.",
-    image: "/images/collections/mantis.jpg",
-  },
-  {
-    code: "07",
-    name: "Regula",
-    tag: "Misura",
-    desc: "Ritmo regolare, proporzioni classiche rilette in chiave contemporanea.",
-    image: "/images/collections/regula.jpg",
-  },
-  {
-    code: "08",
-    name: "Ono",
-    tag: "Essenzialità",
-    desc: "Riduzione al gesto necessario. Forma pura, materia che parla.",
-    image: "/images/collections/ono.jpg",
-  },
-  {
-    code: "09",
-    name: "Balance",
-    tag: "Boho contemporaneo",
-    desc: "Vasche integrate per aromatiche, materie calde, atmosfera accogliente.",
-  },
-  {
-    code: "10",
-    name: "Hily",
-    tag: "Verticalità",
-    desc: "Slancio verso l'alto, sviluppo verticale, vetrine integrate.",
-  },
-];
+import Link from "next/link";
+import { collections } from "@/data/collections";
 
 export default function Collections() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <section
       id="collections"
@@ -98,7 +16,10 @@ export default function Collections() {
               · Collezioni
             </span>
             <h2 className="font-display text-[clamp(2.5rem,5.5vw,5.5rem)] font-light leading-[0.95] tracking-tight text-binova-bone">
-              Dieci modi <span className="italic text-binova-gold-soft">di abitare la materia.</span>
+              Dieci modi{" "}
+              <span className="italic text-binova-gold-soft">
+                di abitare la materia.
+              </span>
             </h2>
           </div>
           <p className="max-w-md text-binova-bone/60">
@@ -108,81 +29,81 @@ export default function Collections() {
           </p>
         </div>
 
-        {/* Collections list — editorial with hover image preview */}
-        <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
-          {collections.map((collection, i) => (
-            <a
+        {/* Editorial grid — image-first, always visible */}
+        <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-24">
+          {collections.map((collection) => (
+            <Link
               key={collection.code}
-              href={`#kitchen-${collection.name.toLowerCase()}`}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              className="group relative grid grid-cols-12 items-center gap-4 py-7 transition-colors hover:bg-white/[0.015] lg:py-9"
+              href={`/cucine/${collection.slug}`}
+              className="group flex flex-col gap-5"
             >
-              <span className="col-span-1 font-display text-sm text-binova-bone/40 lg:text-base">
-                {collection.code}
-              </span>
-
-              <h3 className="col-span-3 font-display text-[clamp(1.8rem,3.5vw,3.4rem)] font-light leading-none tracking-tight text-binova-bone transition-colors group-hover:text-binova-gold-soft lg:col-span-3">
-                {collection.name}
-              </h3>
-
-              <span className="col-span-3 hidden text-[11px] uppercase tracking-[0.28em] text-binova-bone/50 lg:block">
-                {collection.tag}
-              </span>
-
-              <p className="col-span-7 text-sm text-binova-bone/55 lg:col-span-4 lg:text-[15px]">
-                {collection.desc}
-              </p>
-
-              <span
-                className="col-span-1 flex justify-end text-binova-bone/40 transition-all duration-500 group-hover:translate-x-1 group-hover:text-binova-gold"
-                aria-hidden
-              >
-                <svg
-                  width="22"
-                  height="10"
-                  viewBox="0 0 22 10"
-                  fill="none"
-                  className="lg:h-3 lg:w-7"
-                >
-                  <path
-                    d="M0 5h20m0 0L16 1m4 4l-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                  />
-                </svg>
-              </span>
-
-              {/* Hover preview — real kitchen image */}
-              <div
-                className={`pointer-events-none absolute right-6 top-1/2 hidden h-40 w-64 -translate-y-1/2 overflow-hidden rounded-sm bg-binova-stone shadow-2xl shadow-black/50 transition-all duration-700 lg:block ${
-                  hovered === i
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 translate-x-4"
-                }`}
-                aria-hidden
-              >
+              {/* Image — always visible */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-binova-stone">
                 {collection.image ? (
                   <Image
                     src={collection.image}
                     alt={collection.name}
                     fill
-                    sizes="256px"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                   />
                 ) : (
-                  <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-stone-700 to-stone-950">
+                  <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-stone-700 via-stone-800 to-stone-950">
                     <span className="text-[10px] uppercase tracking-[0.4em] text-binova-bone/40">
-                      Coming soon
+                      Collezione 2026
                     </span>
                   </div>
                 )}
+
+                {/* Bottom-right code badge */}
+                <span className="absolute right-4 top-4 font-display text-xs text-binova-bone/70 mix-blend-difference">
+                  {collection.code}
+                </span>
+
+                {/* Hover gold border */}
+                <span
+                  aria-hidden
+                  className="absolute inset-0 border border-transparent transition-colors duration-700 group-hover:border-binova-gold/50"
+                />
               </div>
-            </a>
+
+              {/* Caption */}
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <h3 className="font-display text-[clamp(1.8rem,2.6vw,2.4rem)] font-light leading-none tracking-tight text-binova-bone transition-colors group-hover:text-binova-gold-soft">
+                    {collection.name}
+                  </h3>
+                  <span className="text-[10px] uppercase tracking-[0.32em] text-binova-bone/45">
+                    {collection.tag}
+                  </span>
+                </div>
+                <span
+                  aria-hidden
+                  className="mt-2 text-binova-bone/30 transition-all duration-500 group-hover:translate-x-1 group-hover:text-binova-gold"
+                >
+                  <svg
+                    width="22"
+                    height="10"
+                    viewBox="0 0 22 10"
+                    fill="none"
+                  >
+                    <path
+                      d="M0 5h20m0 0L16 1m4 4l-4 4"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                    />
+                  </svg>
+                </span>
+              </div>
+
+              <p className="text-sm leading-relaxed text-binova-bone/55">
+                {collection.shortDesc}
+              </p>
+            </Link>
           ))}
         </div>
 
-        <div className="mt-16 flex justify-center">
+        <div className="mt-24 flex justify-center">
           <a
             href="#collections-all"
             className="group flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 hover:text-binova-bone transition-colors"
