@@ -176,7 +176,7 @@ export default function EventiPage() {
           <div className="mt-16 grid grid-cols-1 gap-10 max-md:gap-8 md:grid-cols-3 lg:gap-12">
             {featured.map((event) => (
               <article key={event.title} className="flex flex-col gap-5">
-                <div className="relative aspect-[3/4] w-full overflow-hidden border border-white/[0.06] bg-binova-stone">
+                <div className="relative aspect-square w-full overflow-hidden border border-white/[0.06] bg-binova-stone">
                   <Image
                     src={event.image}
                     alt={event.title}
@@ -244,12 +244,12 @@ export default function EventiPage() {
                   aria-hidden
                 >
                   {event.image && (
-                    <span className="relative block h-16 w-24 overflow-hidden border border-white/[0.06] bg-binova-stone lg:h-20 lg:w-32">
+                    <span className="relative block aspect-square h-16 w-16 overflow-hidden border border-white/[0.06] bg-binova-stone lg:h-20 lg:w-20">
                       <Image
                         src={event.image}
                         alt=""
                         fill
-                        sizes="128px"
+                        sizes="80px"
                         className="object-cover"
                       />
                     </span>
