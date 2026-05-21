@@ -76,15 +76,21 @@ export const collections: Collection[] = [
   },
   {
     code: "04",
-    slug: "lab",
-    name: "Lab",
-    tag: "Volumi essenziali",
+    slug: "vesta",
+    name: "Vesta",
+    tag: "Marmo monumentale",
     shortDesc:
-      "Volumi importanti, linee decise. Per chi cerca la cucina come elemento d'architettura.",
+      "Il marmo come protagonista. Venature come architettura, volumi compatti, elettrodomestici incassati nella superficie.",
     longDesc:
-      "Lab è la cucina come laboratorio professionale dell'abitare: volumi importanti, linee decise, ergonomia studiata. Pensata per chi cuoce davvero e vuole uno spazio che risponda alla mano prima ancora che all'occhio.",
-    image: "/images/collections/lab.jpg",
-    materials: ["Acciaio Inox", "Pietra Lavica", "Legno termocotto"],
+      "Vesta porta il marmo dal piano alla parete: lastre Calacatta che corrono dal pavimento al soffitto, frontali in continuità con il fondale, isole-blocco in cui la materia si scolpisce piuttosto che assemblarsi. Una collezione che pretende ambienti generosi e li ripaga con un'estetica imperiale, dove il disegno delle venature diventa l'unica decorazione concessa.",
+    image: "/images/collections/vesta/cover.jpg",
+    gallery: [
+      "/images/collections/vesta/cover.jpg",
+      "/images/collections/vesta/g1.jpg",
+      "/images/collections/vesta/g2.jpg",
+      "/images/collections/vesta/g3.jpg",
+    ],
+    materials: ["Marmo Calacatta", "Statuario lucido", "Noce Canaletto", "Miele integrato"],
   },
   {
     code: "05",
@@ -162,7 +168,6 @@ export const collections: Collection[] = [
       "/images/collections/ono/g3.jpg",
       "/images/collections/ono/g4.jpg",
       "/images/collections/ono/g5.jpg",
-      "/images/collections/ono/g6.jpg",
     ],
     materials: ["Olmo naturale", "Pietra Serena", "Lacca opaca"],
   },
