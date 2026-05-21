@@ -158,8 +158,41 @@ export default async function CollectionPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Second image block — only if image */}
-      {collection.image && (
+      {/* Gallery — full editorial scroll (skips first image which is already hero) */}
+      {collection.gallery && collection.gallery.length > 1 && (
+        <section className="relative bg-binova-black py-20 lg:py-32">
+          <div className="mx-auto mb-12 max-w-[1600px] px-6 lg:mb-16 lg:px-12">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
+              · Galleria
+            </span>
+            <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3.5rem)] font-light leading-[1] tracking-tight text-binova-bone">
+              Atmosfere{" "}
+              <span className="italic text-binova-gold-soft">{collection.name}.</span>
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-6 lg:gap-10">
+            {collection.gallery.slice(1).map((src, i) => (
+              <figure
+                key={src}
+                className="relative aspect-[3/1] w-full overflow-hidden bg-binova-stone"
+              >
+                <Image
+                  src={src}
+                  alt={`${collection.name} — vista ${i + 2}`}
+                  fill
+                  quality={92}
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Fallback secondary image — when no gallery */}
+      {!collection.gallery && collection.image && (
         <section className="relative bg-binova-black px-6 py-20 lg:px-12 lg:py-32">
           <div className="relative mx-auto aspect-[16/9] w-full max-w-[1400px] overflow-hidden">
             <Image

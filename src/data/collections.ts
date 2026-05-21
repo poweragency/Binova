@@ -6,6 +6,7 @@ export type Collection = {
   shortDesc: string;
   longDesc: string;
   image?: string;
+  gallery?: string[];
   materials?: string[];
 };
 
@@ -19,7 +20,14 @@ export const collections: Collection[] = [
       "Linee verticali e orizzontali ritmate da un telaio sottilissimo a vista. La firma più recente di Binova.",
     longDesc:
       "Avola è l'ultima firma di Binova: un telaio sottilissimo a vista disegna un'architettura ritmica di linee verticali e orizzontali. È la collezione che meglio sintetizza la filosofia del brand — la cucina come elemento d'architettura, non come mobile. Pensata per case contemporanee dove le proporzioni contano quanto i materiali.",
-    image: "/images/collections/avola.jpg",
+    image: "/images/collections/avola/gallery-1.jpg",
+    gallery: [
+      "/images/collections/avola/gallery-1.jpg",
+      "/images/collections/avola/gallery-2.jpg",
+      "/images/collections/avola/gallery-3.jpg",
+      "/images/collections/avola/gallery-4.jpg",
+      "/images/collections/avola/gallery-5.jpg",
+    ],
     materials: ["Noce Canaletto", "Marmo Sahara Noir", "Ottone brunito", "Vetro Rain"],
   },
   {
