@@ -90,7 +90,7 @@ export default function Hero() {
           {[
             { value: "1958", label: "Fondazione" },
             { value: "25.000 m²", label: "Factory-One Notaresco" },
-            { value: "10", label: "Collezioni firma" },
+            { value: "8", label: "Collezioni firma" },
             { value: "Made in Italy", label: "Senza compromessi" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-2">

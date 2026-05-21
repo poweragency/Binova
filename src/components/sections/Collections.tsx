@@ -16,7 +16,7 @@ export default function Collections() {
               · Collezioni
             </span>
             <h2 className="font-display text-[clamp(2.5rem,5.5vw,5.5rem)] font-light leading-[0.95] tracking-tight text-binova-bone">
-              Dieci modi{" "}
+              Otto modi{" "}
               <span className="italic text-binova-gold-soft">
                 di abitare la materia.
               </span>

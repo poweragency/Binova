@@ -106,28 +106,6 @@ export const collections: Collection[] = [
     image: "/images/collections/ono.jpg",
     materials: ["Olmo naturale", "Pietra Serena", "Lacca opaca"],
   },
-  {
-    code: "09",
-    slug: "balance",
-    name: "Balance",
-    tag: "Boho contemporaneo",
-    shortDesc:
-      "Vasche integrate per aromatiche, materie calde, atmosfera accogliente.",
-    longDesc:
-      "Balance è la collezione 2026 più morbida del catalogo: vasche integrate per piante aromatiche, materie calde, top in legno massello, schienali in grès Camouflage. Un'estetica boho-moderno per chi vede la cucina come parte del soggiorno.",
-    materials: ["Rovere Grigio Londra", "Grès Camouflage", "Vetrina Malibù"],
-  },
-  {
-    code: "10",
-    slug: "hily",
-    name: "Hily",
-    tag: "Verticalità",
-    shortDesc:
-      "Slancio verso l'alto, sviluppo verticale, vetrine integrate.",
-    longDesc:
-      "Hily è la collezione 2026 che spinge la cucina verso l'alto: sviluppi verticali, vetrine integrate, pensili Book a giorno. Ideale per ambienti con altezze importanti — il loft milanese, il piano nobile fiorentino, la casa di campagna ristrutturata.",
-    materials: ["Noce Canaletto", "Vetrine Zen", "Laccatura a eccimeri"],
-  },
 ];
 
 export function getCollectionBySlug(slug: string): Collection | undefined {

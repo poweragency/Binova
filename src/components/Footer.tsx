@@ -21,7 +21,7 @@ export default function Footer() {
 
           <FooterCol
             title="Prodotti"
-            items={["Cucine", "Living", "Bath", "Contract", "Finiture"]}
+            items={["Cucine", "Contract", "Finiture", "Catalogo 2026"]}
           />
           <FooterCol
             title="Brand"
