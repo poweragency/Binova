@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import PageLoader from "@/components/PageLoader";
 import SmoothAnchors from "@/components/SmoothAnchors";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="it" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
+        <PageLoader />
         <SmoothAnchors />
         {children}
       </body>
