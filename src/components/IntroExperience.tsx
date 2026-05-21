@@ -57,13 +57,14 @@ export default function IntroExperience({
       setPhase("playing");
     } catch {
       setPhase("revealing");
-      setTimeout(() => setPhase("done"), 1200);
+      setTimeout(() => setPhase("done"), 400);
     }
   };
 
   const handleVideoEnd = () => {
+    // Snap to last frame, then briefly cross-fade into the site.
     setPhase("revealing");
-    setTimeout(() => setPhase("done"), 1400);
+    setTimeout(() => setPhase("done"), 450);
   };
 
   const handleSkip = () => {
@@ -152,14 +153,14 @@ export default function IntroExperience({
         </div>
       )}
 
-      {/* Site — fades in as intro completes */}
+      {/* Site — opaque immediately so there's no grey lag when the
+          intro overlay is removed. The overlay above is opaque
+          black, so the site behind it isn't visible during intro. */}
       <div
-        className={`transition-opacity duration-1000 ease-out ${
-          phase === "done"
-            ? "opacity-100"
-            : phase === "revealing"
-            ? "opacity-100"
-            : "opacity-0"
+        className={`transition-opacity duration-300 ease-out ${
+          phase === "idle" || phase === "playing"
+            ? "opacity-0"
+            : "opacity-100"
         } ${phase !== "done" ? "pointer-events-none" : ""}`}
         style={{
           position: phase === "done" ? "relative" : "fixed",

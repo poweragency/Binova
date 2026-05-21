@@ -127,26 +127,26 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile drawer — only below lg */}
+      {/* Mobile drawer — only below lg, fully hidden when closed */}
       <div
         id="mobile-drawer"
         aria-hidden={!mobileOpen}
-        className={`fixed inset-0 z-40 lg:hidden ${
-          mobileOpen ? "pointer-events-auto" : "pointer-events-none"
+        className={`fixed inset-0 z-40 transition-[opacity,visibility] duration-300 lg:hidden ${
+          mobileOpen
+            ? "pointer-events-auto visible opacity-100"
+            : "pointer-events-none invisible opacity-0"
         }`}
       >
         {/* Backdrop */}
         <div
           onClick={() => setMobileOpen(false)}
-          className={`absolute inset-0 bg-binova-black/80 backdrop-blur-md transition-opacity duration-500 ${
-            mobileOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className="absolute inset-0 bg-binova-black/80 backdrop-blur-md"
         />
 
-        {/* Panel */}
+        {/* Panel — slides fully out when closed */}
         <nav
           className={`relative flex h-full flex-col bg-binova-black px-6 pt-24 pb-10 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            mobileOpen ? "translate-y-0" : "-translate-y-4"
+            mobileOpen ? "translate-y-0" : "-translate-y-full"
           }`}
           style={{
             paddingBottom: "calc(env(safe-area-inset-bottom) + 2.5rem)",
