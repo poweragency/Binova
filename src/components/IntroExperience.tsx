@@ -6,6 +6,12 @@ import { useEffect, useRef, useState } from "react";
 type Phase = "idle" | "playing" | "done";
 
 const INTRO_SEEN_KEY = "binova-intro-seen";
+const MOBILE_QUERY = "(max-width: 767px)";
+
+const DESKTOP_VIDEO = "/intro.mp4";
+const DESKTOP_POSTER = "/intro-poster.png";
+const MOBILE_VIDEO = "/intro-mobile.mp4";
+const MOBILE_POSTER = "/intro-poster-mobile.jpg";
 
 export default function IntroExperience({
   children,
@@ -14,6 +20,16 @@ export default function IntroExperience({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [phase, setPhase] = useState<Phase>("idle");
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Device detection — desktop video for tablet+ (≥768px), mobile video for phones
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
 
   // Skip intro if already seen this session OR URL has a hash
   useEffect(() => {
@@ -32,7 +48,7 @@ export default function IntroExperience({
     }
   }, []);
 
-  // Persist that intro was completed; pause video to free CPU
+  // Persist completion; pause video to free CPU
   useEffect(() => {
     if (phase === "done") {
       sessionStorage.setItem(INTRO_SEEN_KEY, "1");
@@ -40,7 +56,7 @@ export default function IntroExperience({
     }
   }, [phase]);
 
-  // Lock scroll while intro overlay is up
+  // Lock body scroll during intro
   useEffect(() => {
     document.body.style.overflow = phase === "done" ? "" : "hidden";
     return () => {
@@ -68,15 +84,13 @@ export default function IntroExperience({
     setPhase("done");
   };
 
+  const videoSrc = isMobile ? MOBILE_VIDEO : DESKTOP_VIDEO;
+  const posterSrc = isMobile ? MOBILE_POSTER : DESKTOP_POSTER;
+
   return (
     <>
-      {/* Site — always rendered fully opaque underneath */}
       {children}
 
-      {/* Intro overlay — always mounted, fades out solid-black via opacity.
-          Background uses the brand black so when it fades into Hero
-          (which is also bg-binova-black at the section level) there is
-          no grey blend mid-transition. */}
       <div
         aria-hidden={phase === "done"}
         className={`fixed inset-0 z-[100] bg-binova-black transition-opacity duration-150 ease-out ${
@@ -85,30 +99,32 @@ export default function IntroExperience({
             : "opacity-100"
         }`}
       >
-        {/* High-res poster image — sharp idle state */}
+        {/* Poster — desktop or mobile, switched once isMobile resolved */}
         <Image
-          src="/intro-poster.png"
+          key={posterSrc}
+          src={posterSrc}
           alt="Showroom Binova Milano"
           fill
           priority
           quality={95}
           sizes="100vw"
-          className={`object-cover ${
+          className={`object-cover transition-opacity duration-300 ${
             phase === "idle" ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-300`}
+          }`}
         />
 
-        {/* Video — only visible during playback */}
+        {/* Video — src swaps based on viewport, key forces reload on swap */}
         <video
+          key={videoSrc}
           ref={videoRef}
-          src="/intro.mp4"
+          src={videoSrc}
           muted
           playsInline
           preload="auto"
           onEnded={handleVideoEnd}
-          className={`absolute inset-0 h-full w-full object-cover ${
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
             phase === "idle" ? "opacity-0" : "opacity-100"
-          } transition-opacity duration-300`}
+          }`}
         />
 
         {/* Idle UI — door CTA */}
@@ -118,16 +134,17 @@ export default function IntroExperience({
             className="group absolute inset-0 focus:outline-none"
             aria-label="Entra nello showroom Binova"
           >
-            {/* Pulsing door hotspot */}
+            {/* Door hotspot — position differs per orientation */}
             <span
-              className="pointer-events-none absolute left-1/2 top-[75%] -translate-x-1/2 -translate-y-1/2"
+              className={`pointer-events-none absolute left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+                isMobile ? "top-[68%]" : "top-[75%]"
+              }`}
               aria-hidden
             >
               <span className="block h-20 w-20 rounded-full border border-binova-gold/50 animate-[breathe_3s_ease-in-out_infinite]" />
               <span className="absolute inset-0 m-auto block h-1.5 w-1.5 rounded-full bg-binova-gold shadow-[0_0_20px_rgba(201,179,120,0.8)]" />
             </span>
 
-            {/* ENTER label */}
             <span
               className="pointer-events-none absolute inset-x-0 bottom-[12vh] flex flex-col items-center gap-3 max-md:bottom-[10vh] max-md:gap-2 max-md:px-6 max-md:text-center"
               style={{
