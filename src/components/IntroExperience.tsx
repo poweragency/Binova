@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 
 type Phase = "idle" | "playing" | "revealing" | "done";
 
+const INTRO_SEEN_KEY = "binova-intro-seen";
+
 export default function IntroExperience({
   children,
 }: {
@@ -12,6 +14,32 @@ export default function IntroExperience({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [phase, setPhase] = useState<Phase>("idle");
+
+  // On mount: skip intro if already seen this session OR if URL has a hash
+  // (user navigated from another page targeting a specific section)
+  useEffect(() => {
+    const hasHash = window.location.hash.length > 1;
+    const seenIntro = sessionStorage.getItem(INTRO_SEEN_KEY) === "1";
+    if (hasHash || seenIntro) {
+      setPhase("done");
+      if (hasHash) {
+        // Defer hash scroll until layout settles
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            const el = document.querySelector(window.location.hash);
+            el?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 80);
+        });
+      }
+    }
+  }, []);
+
+  // Persist that the intro was completed for this session
+  useEffect(() => {
+    if (phase === "done") {
+      sessionStorage.setItem(INTRO_SEEN_KEY, "1");
+    }
+  }, [phase]);
 
   useEffect(() => {
     document.body.style.overflow = phase === "done" ? "" : "hidden";
