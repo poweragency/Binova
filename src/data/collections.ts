@@ -20,8 +20,9 @@ export const collections: Collection[] = [
       "Linee verticali e orizzontali ritmate da un telaio sottilissimo a vista. La firma più recente di Binova.",
     longDesc:
       "Avola è l'ultima firma di Binova: un telaio sottilissimo a vista disegna un'architettura ritmica di linee verticali e orizzontali. È la collezione che meglio sintetizza la filosofia del brand — la cucina come elemento d'architettura, non come mobile. Pensata per case contemporanee dove le proporzioni contano quanto i materiali.",
-    image: "/images/collections/avola/gallery-1.jpg",
+    image: "/images/collections/avola/cover.jpg",
     gallery: [
+      "/images/collections/avola/cover.jpg",
       "/images/collections/avola/gallery-1.jpg",
       "/images/collections/avola/gallery-2.jpg",
       "/images/collections/avola/gallery-3.jpg",
@@ -62,13 +63,13 @@ export const collections: Collection[] = [
       "Apertura ante senza maniglie a vista, ritmo grafico, presenza scultorea.",
     longDesc:
       "Vogue gioca con tagli verticali che diventano sia funzione (l'apertura delle ante) sia decoro. Il risultato è una presenza scultorea: la cucina non si nasconde, si afferma. Una collezione che funziona altrettanto bene come totem centrale o come fondale.",
-    image: "/images/collections/vogue/g1.jpg",
+    image: "/images/collections/vogue/g5.jpg",
     gallery: [
+      "/images/collections/vogue/g5.jpg",
       "/images/collections/vogue/g1.jpg",
       "/images/collections/vogue/g2.jpg",
       "/images/collections/vogue/g3.jpg",
       "/images/collections/vogue/g4.jpg",
-      "/images/collections/vogue/g5.jpg",
       "/images/collections/vogue/g6.jpg",
     ],
     materials: ["Rovere termotrattato", "Alluminio spazzolato", "Vetro acidato"],
@@ -94,10 +95,10 @@ export const collections: Collection[] = [
       "La materia scavata. Geometrie ottenute per sottrazione, atmosfera minerale.",
     longDesc:
       "Scava nasce da un gesto: togliere. Le geometrie sono ottenute per sottrazione dalla materia, non per aggiunta. Ne deriva un'atmosfera minerale, quasi archeologica — la cucina come blocco scolpito, non assemblato.",
-    image: "/images/collections/scava/g1.jpg",
+    image: "/images/collections/scava/g2.jpg",
     gallery: [
-      "/images/collections/scava/g1.jpg",
       "/images/collections/scava/g2.jpg",
+      "/images/collections/scava/g1.jpg",
       "/images/collections/scava/g3.jpg",
       "/images/collections/scava/g4.jpg",
       "/images/collections/scava/g5.jpg",
@@ -136,12 +137,12 @@ export const collections: Collection[] = [
       "Ritmo regolare, proporzioni classiche rilette in chiave contemporanea.",
     longDesc:
       "Regula è la regola: ritmo regolare, proporzioni classiche, ma rilette con vocabolario contemporaneo. È la collezione per chi cerca permanenza, non tendenza. Una cucina che si sarebbe potuta progettare nel 1960 o nel 2060.",
-    image: "/images/collections/regula/g1.jpg",
+    image: "/images/collections/regula/g4.jpg",
     gallery: [
+      "/images/collections/regula/g4.jpg",
       "/images/collections/regula/g1.jpg",
       "/images/collections/regula/g2.jpg",
       "/images/collections/regula/g3.jpg",
-      "/images/collections/regula/g4.jpg",
     ],
     materials: ["Frassino tinto", "Marmo Calacatta", "Brass anticato"],
   },
@@ -154,10 +155,10 @@ export const collections: Collection[] = [
       "Riduzione al gesto necessario. Forma pura, materia che parla.",
     longDesc:
       "Ono è riduzione: si elimina tutto ciò che non è necessario finché resta solo il gesto. La forma è pura, è la materia a parlare. Una collezione zen, pensata per spazi che vogliono respirare.",
-    image: "/images/collections/ono/g1.jpg",
+    image: "/images/collections/ono/g2.jpg",
     gallery: [
-      "/images/collections/ono/g1.jpg",
       "/images/collections/ono/g2.jpg",
+      "/images/collections/ono/g1.jpg",
       "/images/collections/ono/g3.jpg",
       "/images/collections/ono/g4.jpg",
       "/images/collections/ono/g5.jpg",
