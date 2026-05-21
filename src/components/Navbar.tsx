@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
@@ -11,7 +12,16 @@ const links = [
   { label: "Eventi", href: "/eventi" },
 ];
 
+function isActive(href: string, pathname: string): boolean {
+  // "Cucine" lights up on the home and on any kitchen detail page
+  if (href === "/#collections") {
+    return pathname === "/" || pathname.startsWith("/cucine");
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -73,18 +83,30 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop nav — unchanged */}
+          {/* Desktop nav — active item highlighted gold */}
           <nav className="hidden items-center gap-9 lg:flex">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="group relative text-[11px] uppercase tracking-[0.28em] text-binova-bone/70 transition-colors hover:text-binova-bone"
-              >
-                {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-binova-gold transition-all duration-500 group-hover:w-full" />
-              </Link>
-            ))}
+            {links.map((link) => {
+              const active = isActive(link.href, pathname);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`group relative text-[11px] uppercase tracking-[0.28em] transition-colors ${
+                    active
+                      ? "text-binova-gold"
+                      : "text-binova-bone/70 hover:text-binova-bone"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1.5 left-0 h-px bg-binova-gold transition-all duration-500 ${
+                      active ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA — points to #contact on current page */}
@@ -158,41 +180,54 @@ export default function Navbar() {
               · Menu
             </span>
             <ul className="mt-8 flex flex-col gap-1">
-              {links.map((link, i) => (
-                <li
-                  key={link.href}
-                  className={`overflow-hidden border-b border-white/[0.06] transition-all duration-700 ${
-                    mobileOpen
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-4 opacity-0"
-                  }`}
-                  style={{
-                    transitionDelay: mobileOpen ? `${100 + i * 70}ms` : "0ms",
-                  }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-between py-5 font-display text-3xl text-binova-bone transition-colors hover:text-binova-gold-soft"
+              {links.map((link, i) => {
+                const active = isActive(link.href, pathname);
+                return (
+                  <li
+                    key={link.href}
+                    className={`overflow-hidden border-b border-white/[0.06] transition-all duration-700 ${
+                      mobileOpen
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-4 opacity-0"
+                    }`}
+                    style={{
+                      transitionDelay: mobileOpen ? `${100 + i * 70}ms` : "0ms",
+                    }}
                   >
-                    <span>{link.label}</span>
-                    <span className="text-binova-bone/30" aria-hidden>
-                      <svg
-                        width="22"
-                        height="10"
-                        viewBox="0 0 22 10"
-                        fill="none"
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`flex items-center justify-between py-5 font-display text-3xl transition-colors ${
+                        active
+                          ? "text-binova-gold"
+                          : "text-binova-bone hover:text-binova-gold-soft"
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      <span
+                        className={
+                          active ? "text-binova-gold" : "text-binova-bone/30"
+                        }
+                        aria-hidden
                       >
-                        <path
-                          d="M0 5h20m0 0L16 1m4 4l-4 4"
-                          stroke="currentColor"
-                          strokeWidth="1"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                </li>
-              ))}
+                        <svg
+                          width="22"
+                          height="10"
+                          viewBox="0 0 22 10"
+                          fill="none"
+                        >
+                          <path
+                            d="M0 5h20m0 0L16 1m4 4l-4 4"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                          />
+                        </svg>
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

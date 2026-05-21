@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contacts from "@/components/sections/Contacts";
+import AccordionItem from "@/components/AccordionItem";
 
 export const metadata: Metadata = {
   title: "Contract System · Binova",
@@ -104,27 +105,51 @@ export default function ContractPage() {
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Cosa includiamo
             </span>
-            <ul className="mt-6 divide-y divide-white/[0.06] border-y border-white/[0.06]">
-              {[
-                "Progettazione esecutiva e tavole tecniche",
-                "Selezione finiture e materiali su brief",
-                "Coordinamento elettrodomestici premium",
-                "Logistica e installazione in cantiere",
-                "Direzione lavori e collaudo finale",
-                "Servizio post-vendita dedicato",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center justify-between py-4 text-binova-bone/85"
-                >
-                  <span className="font-display text-[15px] lg:text-base">
-                    {item}
-                  </span>
-                  <span className="text-binova-bone/30" aria-hidden>
-                    +
-                  </span>
-                </li>
-              ))}
+            <ul className="mt-6">
+              <AccordionItem title="Progettazione esecutiva e tavole tecniche">
+                Tavole esecutive in formato architettonico (piante,
+                prospetti, sezioni, dettagli costruttivi), abachi
+                materiali e finiture, schede tecniche di tutti gli
+                elettrodomestici integrati. Documentazione completa
+                consegnata allo studio di architettura per il
+                coordinamento con le altre lavorazioni di cantiere.
+              </AccordionItem>
+              <AccordionItem title="Selezione finiture e materiali su brief">
+                Visita guidata nello showroom di Via Durini con
+                materioteca completa: 22 finiture del catalogo 2026,
+                oltre 60 essenze legno, marmi naturali e gres di grande
+                formato. Selezione condivisa con interior designer e
+                direzione lavori; samples fisici recapitati in studio.
+              </AccordionItem>
+              <AccordionItem title="Coordinamento elettrodomestici premium">
+                Integrazione di elettrodomestici Miele, Gaggenau,
+                Sub-Zero, V-Zug, Wolf e Bertazzoni. Studio degli
+                incassi, gestione della logistica diretta con il
+                fornitore, verifica delle alimentazioni e delle
+                tolleranze in cantiere prima della posa.
+              </AccordionItem>
+              <AccordionItem title="Logistica e installazione in cantiere">
+                Consegna programmata sul cronoprogramma del cantiere
+                con squadra di installatori certificati Binova.
+                Gestione dei colli, smontaggio e rimontaggio in
+                cantiere, coordinamento con elettricisti, idraulici e
+                posatori del piano. Pulizia post-installazione inclusa.
+              </AccordionItem>
+              <AccordionItem title="Direzione lavori e collaudo finale">
+                Un project manager Binova dedicato a tutto il cantiere.
+                Sopralluoghi periodici, verifica delle tolleranze,
+                taratura della componentistica, collaudo funzionale di
+                tutti gli elettrodomestici e dei sistemi integrati
+                (filtraggio aria, illuminazione, cantinetta) prima
+                della consegna ufficiale al committente.
+              </AccordionItem>
+              <AccordionItem title="Servizio post-vendita dedicato">
+                Garanzia estesa, contratto di assistenza opzionale,
+                intervento on-site entro 48 ore lavorative nelle
+                principali città italiane. Magazzino ricambi originali
+                su tutta la produzione storica Binova — anche su
+                cucine installate vent'anni fa.
+              </AccordionItem>
             </ul>
 
             <a
