@@ -116,14 +116,14 @@ export const collections: Collection[] = [
       "Strutture leggere, dettagli da orologeria. Ingegneria sussurrata.",
     longDesc:
       "Mantis è ingegneria sussurrata: strutture leggere con ante in alluminio da 12 mm, giunzioni invisibili, dettagli da orologeria. Una collezione per chi riconosce la qualità nei micron prima ancora che nelle finiture.",
-    image: "/images/collections/mantis/g1.jpg",
+    image: "/images/collections/mantis/g6.jpg",
     gallery: [
+      "/images/collections/mantis/g6.jpg",
       "/images/collections/mantis/g1.jpg",
       "/images/collections/mantis/g2.jpg",
       "/images/collections/mantis/g3.jpg",
       "/images/collections/mantis/g4.jpg",
       "/images/collections/mantis/g5.jpg",
-      "/images/collections/mantis/g6.jpg",
     ],
     materials: ["Alluminio 12mm", "Rovere Saturno", "Vetro nero strutturale"],
   },
