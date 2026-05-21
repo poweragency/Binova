@@ -48,7 +48,7 @@ export default function IntroExperience({
         <div className="fixed inset-0 z-[100] bg-black">
           {/* High-res poster image — sharp idle state */}
           <Image
-            src="/intro-poster.jpg"
+            src="/intro-poster.png"
             alt="Showroom Binova Milano"
             fill
             priority
@@ -81,7 +81,7 @@ export default function IntroExperience({
             >
               {/* Pulsing door hotspot — positioned on actual door */}
               <span
-                className="pointer-events-none absolute left-1/2 top-[64%] -translate-x-1/2 -translate-y-1/2"
+                className="pointer-events-none absolute left-1/2 top-[72%] -translate-x-1/2 -translate-y-1/2"
                 aria-hidden
               >
                 <span className="block h-20 w-20 rounded-full border border-binova-gold/50 animate-[breathe_3s_ease-in-out_infinite]" />
