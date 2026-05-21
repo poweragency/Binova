@@ -4,7 +4,7 @@ export default function Heritage() {
   return (
     <section
       id="heritage"
-      className="relative overflow-hidden bg-binova-ink px-6 py-32 lg:px-12 lg:py-44"
+      className="relative overflow-hidden bg-binova-ink px-6 py-32 max-lg:py-20 max-md:py-16 lg:px-12 lg:py-44"
     >
       <div className="mx-auto max-w-[1400px]">
         {/* Section header — full width */}
@@ -26,7 +26,7 @@ export default function Heritage() {
         </div>
 
         {/* Editorial banner image */}
-        <div className="relative mt-16 aspect-[21/9] w-full overflow-hidden border border-white/[0.06] lg:mt-20">
+        <div className="relative mt-16 aspect-[21/9] w-full overflow-hidden border border-white/[0.06] max-lg:mt-10 max-md:aspect-[4/3] lg:mt-20">
           <Image
             src="/images/realizzazioni/contract.jpg"
             alt="Realizzazione Binova"
@@ -53,7 +53,7 @@ export default function Heritage() {
         </div>
 
         {/* Timeline — horizontal */}
-        <div className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-white/[0.06] pt-12 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-10">
+        <div className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-white/[0.06] pt-12 max-lg:mt-12 max-lg:gap-y-8 max-lg:pt-8 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-10">
           <TimelineItem
             year="1958"
             event="Giovanni e Francesco Bolletta fondano la bottega a Petrignano d'Assisi."
@@ -77,7 +77,7 @@ export default function Heritage() {
         </div>
 
         {/* Brand pillars — 4 columns, text-only */}
-        <div className="mt-24 grid grid-cols-1 gap-x-8 gap-y-12 border-t border-white/[0.06] pt-16 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-12">
+        <div className="mt-24 grid grid-cols-1 gap-x-8 gap-y-12 border-t border-white/[0.06] pt-16 max-lg:mt-14 max-lg:gap-y-10 max-lg:pt-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-12">
           <Pillar
             code="I."
             title="Made in Italy"

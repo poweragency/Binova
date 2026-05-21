@@ -2,7 +2,10 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative border-t border-white/[0.06] bg-binova-black px-6 pb-10 pt-24 lg:px-12 lg:pt-32"
+      className="relative border-t border-white/[0.06] bg-binova-black px-6 pb-10 pt-24 max-lg:pt-16 max-md:pt-12 lg:px-12 lg:pt-32"
+      style={{
+        paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))",
+      }}
     >
       <div className="mx-auto max-w-[1600px]">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
@@ -33,7 +36,7 @@ export default function Footer() {
           />
         </div>
 
-        <div className="mt-20 flex flex-col gap-6 border-t border-white/[0.06] pt-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-20 flex flex-col gap-6 border-t border-white/[0.06] pt-8 max-lg:mt-14 max-md:mt-10 lg:flex-row lg:items-center lg:justify-between">
           <div className="text-[10px] uppercase tracking-[0.32em] text-binova-bone/40">
             © {new Date().getFullYear()} Binova — Cubo Design S.r.l. · P.IVA 01579900679
           </div>

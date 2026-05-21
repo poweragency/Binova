@@ -34,8 +34,14 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
 body {
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
@@ -53,3 +59,41 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
+
+/* === MOBILE-ONLY FIXES — do not touch desktop === */
+
+/* Prevent iOS auto-zoom on input focus */
+@media (max-width: 1023.98px) {
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+/* Better tap response on mobile */
+@media (hover: none) and (pointer: coarse) {
+  a, button {
+    touch-action: manipulation;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Safe-area-aware utilities (iPhone notch / home indicator) */
+.safe-pt { padding-top: env(safe-area-inset-top); }
+.safe-pb { padding-bottom: env(safe-area-inset-bottom); }
+.safe-pl { padding-left: env(safe-area-inset-left); }
+.safe-pr { padding-right: env(safe-area-inset-right); }
+
+/* Lock body scroll when overlay is open */
+body.no-scroll {
+  overflow: hidden;
+  touch-action: none;
+}

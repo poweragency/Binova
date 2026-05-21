@@ -117,7 +117,12 @@ export default function IntroExperience({
               </span>
 
               {/* ENTER label — bottom center */}
-              <span className="pointer-events-none absolute inset-x-0 bottom-[12vh] flex flex-col items-center gap-3">
+              <span
+                className="pointer-events-none absolute inset-x-0 bottom-[12vh] flex flex-col items-center gap-3 max-md:bottom-[10vh] max-md:gap-2 max-md:px-6 max-md:text-center"
+                style={{
+                  paddingBottom: "env(safe-area-inset-bottom)",
+                }}
+              >
                 <span className="h-[1px] w-12 bg-binova-gold/80 transition-all duration-700 group-hover:w-24" />
                 <span className="font-display text-[clamp(1.1rem,1.6vw,1.4rem)] tracking-[0.32em] uppercase text-binova-bone transition-colors duration-500 group-hover:text-binova-gold">
                   Entra
@@ -132,7 +137,10 @@ export default function IntroExperience({
           {phase === "playing" && (
             <button
               onClick={handleSkip}
-              className="absolute right-6 top-6 z-10 text-[11px] uppercase tracking-[0.32em] text-binova-bone/60 transition-colors hover:text-binova-bone"
+              className="absolute right-6 top-6 z-10 text-[11px] uppercase tracking-[0.32em] text-binova-bone/60 transition-colors hover:text-binova-bone max-md:right-4 max-md:top-4 max-md:rounded-full max-md:border max-md:border-binova-bone/30 max-md:bg-black/40 max-md:px-4 max-md:py-2 max-md:backdrop-blur-sm"
+              style={{
+                marginTop: "env(safe-area-inset-top)",
+              }}
             >
               Salta intro →
             </button>

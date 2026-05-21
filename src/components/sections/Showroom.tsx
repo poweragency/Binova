@@ -4,7 +4,7 @@ export default function Showroom() {
   return (
     <section
       id="showroom"
-      className="relative overflow-hidden bg-binova-black px-6 py-32 lg:px-12 lg:py-44"
+      className="relative overflow-hidden bg-binova-black px-6 py-32 max-lg:py-20 max-md:py-16 lg:px-12 lg:py-44"
     >
       <div className="mx-auto max-w-[1600px]">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
@@ -30,10 +30,10 @@ export default function Showroom() {
               <Info label="Orari" value="Lun–Sab · 10:00–19:00" />
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center gap-4">
+            <div className="mt-4 flex flex-wrap items-center gap-4 max-md:flex-col max-md:items-stretch">
               <a
                 href="#book"
-                className="group flex items-center gap-4 border border-binova-bone/30 px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-all duration-500 hover:border-binova-gold hover:text-binova-gold"
+                className="group flex items-center justify-between gap-4 border border-binova-bone/30 px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-all duration-500 hover:border-binova-gold hover:text-binova-gold max-md:px-6"
               >
                 Prenota una visita
                 <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">

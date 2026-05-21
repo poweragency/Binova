@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen overflow-hidden bg-binova-black"
+      className="relative min-h-screen max-lg:min-h-[100svh] overflow-hidden bg-binova-black"
     >
       {/* Hero image — true Binova kitchen */}
       <div className="absolute inset-0">
@@ -38,7 +38,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex min-h-screen max-w-[1600px] flex-col justify-between px-6 pb-16 pt-36 lg:px-12 lg:pb-20 lg:pt-44">
+      <div className="relative mx-auto flex min-h-screen max-lg:min-h-[100svh] max-w-[1600px] flex-col justify-between px-6 pb-16 pt-36 max-lg:pt-28 max-lg:pb-12 lg:px-12 lg:pb-20 lg:pt-44">
         {/* Top eyebrow */}
         <div className="flex items-center gap-4">
           <span className="h-px w-12 bg-binova-gold/60" />
@@ -48,27 +48,27 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 max-lg:gap-7">
           <h1 className="font-display font-light leading-[0.95] tracking-tight text-binova-bone drop-shadow-[0_2px_30px_rgba(0,0,0,0.4)]">
-            <span className="block text-[clamp(2.8rem,8.5vw,9rem)]">
+            <span className="block text-[clamp(2.8rem,8.5vw,9rem)] max-md:text-[clamp(2.4rem,12vw,4rem)]">
               Cucine d'autore
             </span>
-            <span className="block text-[clamp(2.8rem,8.5vw,9rem)] italic text-binova-gold-soft">
+            <span className="block text-[clamp(2.8rem,8.5vw,9rem)] max-md:text-[clamp(2.4rem,12vw,4rem)] italic text-binova-gold-soft">
               dal 1958.
             </span>
           </h1>
 
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-10 max-lg:gap-6 lg:flex-row lg:items-end lg:justify-between">
             <p className="max-w-xl text-[clamp(0.95rem,1.1vw,1.05rem)] leading-relaxed text-binova-bone/85">
               Da Petrignano d'Assisi a Milano. Sessantasei anni di artigianato
               evoluto in linguaggio contemporaneo. Ogni cucina è disegnata
               attorno all'architettura che la accoglie.
             </p>
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 max-md:flex-col max-md:items-stretch max-md:gap-4">
               <a
                 href="#collections"
-                className="group flex items-center gap-4 border border-binova-bone/40 bg-black/20 px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-binova-bone backdrop-blur-sm transition-all duration-500 hover:border-binova-gold hover:text-binova-gold"
+                className="group flex items-center justify-between gap-4 border border-binova-bone/40 bg-black/20 px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-binova-bone backdrop-blur-sm transition-all duration-500 hover:border-binova-gold hover:text-binova-gold max-md:px-6"
               >
                 Esplora le collezioni
                 <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
@@ -77,7 +77,7 @@ export default function Hero() {
               </a>
               <a
                 href="#showroom"
-                className="text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 hover:text-binova-bone transition-colors"
+                className="text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 hover:text-binova-bone transition-colors max-md:py-3 max-md:text-center"
               >
                 Showroom Milano
               </a>
@@ -86,7 +86,7 @@ export default function Hero() {
         </div>
 
         {/* Bottom data row */}
-        <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 max-lg:mt-12 max-lg:gap-6 max-lg:pt-8 lg:grid-cols-4">
           {[
             { value: "1958", label: "Fondazione" },
             { value: "25.000 m²", label: "Factory-One Notaresco" },

@@ -46,7 +46,7 @@ export default async function CollectionPage({ params }: Props) {
       <Navbar />
 
       {/* Hero — full-bleed kitchen image */}
-      <section className="relative h-[100svh] min-h-[640px] overflow-hidden bg-binova-black">
+      <section className="relative h-[100svh] min-h-[640px] max-md:min-h-[560px] overflow-hidden bg-binova-black">
         {collection.image ? (
           <Image
             src={collection.image}
@@ -72,7 +72,7 @@ export default async function CollectionPage({ params }: Props) {
         />
 
         {/* Hero content */}
-        <div className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-between px-6 pb-16 pt-32 lg:px-12 lg:pb-20 lg:pt-40">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1600px] flex-col justify-between px-6 pb-16 pt-32 max-md:pt-24 max-md:pb-12 lg:px-12 lg:pb-20 lg:pt-40">
           {/* Top — breadcrumb */}
           <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-binova-bone/60">
             <Link href="/" className="hover:text-binova-bone transition-colors">
@@ -100,7 +100,7 @@ export default async function CollectionPage({ params }: Props) {
                 {collection.tag}
               </span>
             </div>
-            <h1 className="font-display text-[clamp(4rem,14vw,14rem)] font-light leading-[0.85] tracking-tight text-binova-bone drop-shadow-[0_4px_40px_rgba(0,0,0,0.5)]">
+            <h1 className="font-display text-[clamp(4rem,14vw,14rem)] max-md:text-[clamp(3.5rem,18vw,6rem)] font-light leading-[0.85] tracking-tight text-binova-bone drop-shadow-[0_4px_40px_rgba(0,0,0,0.5)]">
               {collection.name}
             </h1>
           </div>
@@ -113,8 +113,8 @@ export default async function CollectionPage({ params }: Props) {
       </section>
 
       {/* Long description + materials */}
-      <section className="bg-binova-ink px-6 py-32 lg:px-12 lg:py-44">
-        <div className="mx-auto grid max-w-[1400px] gap-16 lg:grid-cols-12 lg:gap-20">
+      <section className="bg-binova-ink px-6 py-32 max-lg:py-20 max-md:py-16 lg:px-12 lg:py-44">
+        <div className="mx-auto grid max-w-[1400px] gap-16 max-lg:gap-10 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-7">
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Identità
@@ -160,22 +160,22 @@ export default async function CollectionPage({ params }: Props) {
 
       {/* Gallery — full editorial scroll (skips first image which is already hero) */}
       {collection.gallery && collection.gallery.length > 1 && (
-        <section className="relative bg-binova-black py-20 lg:py-32">
-          <div className="mx-auto mb-12 max-w-[1600px] px-6 lg:mb-16 lg:px-12">
+        <section className="relative bg-binova-black py-20 max-md:py-12 lg:py-32">
+          <div className="mx-auto mb-12 max-w-[1600px] px-6 max-md:mb-8 lg:mb-16 lg:px-12">
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Galleria
             </span>
-            <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3.5rem)] font-light leading-[1] tracking-tight text-binova-bone">
+            <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3.5rem)] max-md:text-[clamp(1.6rem,7vw,2.6rem)] font-light leading-[1] tracking-tight text-binova-bone">
               Atmosfere{" "}
               <span className="italic text-binova-gold-soft">{collection.name}.</span>
             </h2>
           </div>
 
-          <div className="flex flex-col gap-6 lg:gap-10">
+          <div className="flex flex-col gap-6 max-md:gap-3 lg:gap-10">
             {collection.gallery.slice(1).map((src, i) => (
               <figure
                 key={src}
-                className="relative aspect-[3/1] w-full overflow-hidden bg-binova-stone"
+                className="relative aspect-[3/1] max-md:aspect-[16/10] w-full overflow-hidden bg-binova-stone"
               >
                 <Image
                   src={src}
@@ -207,8 +207,8 @@ export default async function CollectionPage({ params }: Props) {
       )}
 
       {/* Prev / next nav */}
-      <section className="border-t border-white/[0.06] bg-binova-black px-6 py-16 lg:px-12 lg:py-20">
-        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-8">
+      <section className="border-t border-white/[0.06] bg-binova-black px-6 py-16 max-md:py-10 lg:px-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-8 max-md:gap-4">
           <Link
             href={`/cucine/${prev.slug}`}
             className="group flex flex-col gap-3"

@@ -6,11 +6,11 @@ export default function Collections() {
   return (
     <section
       id="collections"
-      className="relative bg-binova-black px-6 py-32 lg:px-12 lg:py-44"
+      className="relative bg-binova-black px-6 py-32 max-lg:py-20 max-md:py-16 lg:px-12 lg:py-44"
     >
       <div className="mx-auto max-w-[1600px]">
         {/* Section header */}
-        <div className="mb-20 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-20 flex flex-col gap-6 max-lg:mb-12 max-md:gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex flex-col gap-4">
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Collezioni
@@ -30,7 +30,7 @@ export default function Collections() {
         </div>
 
         {/* Editorial grid — image-first, always visible, 2 wide cards per row */}
-        <div className="grid grid-cols-1 gap-x-10 gap-y-20 md:grid-cols-2 lg:gap-x-14 lg:gap-y-28">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-20 max-md:gap-y-12 md:grid-cols-2 lg:gap-x-14 lg:gap-y-28">
           {collections.map((collection) => (
             <Link
               key={collection.code}
