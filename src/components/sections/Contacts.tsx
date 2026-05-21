@@ -32,7 +32,7 @@ export default function Contacts() {
               prima visita all'installazione finale.
             </p>
 
-            {/* Prominent phone number */}
+            {/* Phone number — clickable, restrained size */}
             <a
               href="tel:+390229061826"
               className="group mt-10 inline-flex items-baseline gap-3 max-md:w-full"
@@ -40,24 +40,17 @@ export default function Contacts() {
               <span className="text-[10px] uppercase tracking-[0.32em] text-binova-bone/40">
                 Telefono
               </span>
-              <span className="font-display text-[clamp(2rem,3.5vw,2.8rem)] font-light tracking-tight text-binova-bone transition-colors group-hover:text-binova-gold-soft">
+              <span className="font-display text-[clamp(1.25rem,1.8vw,1.6rem)] font-light tracking-tight text-binova-bone transition-colors group-hover:text-binova-gold-soft">
                 +39 02 2906 1826
               </span>
             </a>
-            <p className="mt-2 text-[11px] uppercase tracking-[0.32em] text-binova-bone/40">
+            <p className="mt-1.5 text-[11px] uppercase tracking-[0.32em] text-binova-bone/40">
               <span className="md:hidden">Tocca per chiamare</span>
               <span className="hidden md:inline">Lun–Sab · 10:00–19:00</span>
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4 max-md:flex-col max-md:items-stretch max-md:gap-3">
               <ContactFormButton />
-              <a
-                href="tel:+390229061826"
-                className="group inline-flex items-center justify-between gap-3 px-2 py-3 text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 hover:text-binova-bone transition-colors max-md:border max-md:border-binova-bone/15 max-md:px-6 max-md:py-4 md:hidden"
-              >
-                Chiamaci adesso
-                <span aria-hidden>→</span>
-              </a>
             </div>
           </div>
 
@@ -68,11 +61,6 @@ export default function Contacts() {
 
             <div className="mt-6 flex flex-col gap-5 max-md:gap-4">
               <ContactRow label="Indirizzo" value="Via Durini 17, 20122 Milano" />
-              <ContactRow
-                label="Telefono"
-                value="+39 02 2906 1826"
-                href="tel:+390229061826"
-              />
               <ContactRow label="Orari" value="Lun–Sab · 10:00–19:00" />
             </div>
 

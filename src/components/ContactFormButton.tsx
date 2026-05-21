@@ -53,15 +53,10 @@ export default function ContactFormButton({
     if (!nome.trim() || !telefono.trim() || !email.trim()) return;
 
     setStatus("submitting");
-
-    const body = encodeURIComponent(
-      `Salve,\n\nVorrei prenotare una visita presso lo showroom di Via Durini 17.\n\nNome completo: ${nome}\nTelefono: ${telefono}\nEmail: ${email}\n\nGrazie.`
-    );
-    const subject = encodeURIComponent("Richiesta visita showroom — Binova Milano");
-    window.location.href = `mailto:info@binovamilano.it?subject=${subject}&body=${body}`;
-
-    // Show success UI almost immediately — the mailto opens the user's client
-    setTimeout(() => setStatus("success"), 300);
+    // Simulated submission — no mailto, no email client opened.
+    // When a backend (Resend/Formspree/Vercel API route) is plugged in
+    // it goes here; for now we just transition to the success state.
+    setTimeout(() => setStatus("success"), 350);
   };
 
   const buttonCls =
@@ -118,35 +113,38 @@ export default function ContactFormButton({
               </svg>
             </button>
 
-            <div className="px-7 pt-12 sm:px-10 sm:pt-14">
-              <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
-                · Contatto
-              </span>
-              <h2
-                id="contact-form-title"
-                className="mt-3 font-display text-3xl font-light leading-[1.05] tracking-tight text-binova-bone sm:text-4xl"
-              >
-                Prenota una{" "}
-                <span className="italic text-binova-gold-soft">visita.</span>
-              </h2>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-binova-bone/60">
-                Lasciaci i tuoi recapiti, un nostro consulente ti
-                ricontatterà entro 24 ore lavorative.
-              </p>
-            </div>
+            {/* Header — only shown when filling in the form, hidden on success */}
+            {status !== "success" && (
+              <div className="px-7 pt-12 sm:px-10 sm:pt-14">
+                <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
+                  · Contatto
+                </span>
+                <h2
+                  id="contact-form-title"
+                  className="mt-3 font-display text-3xl font-light leading-[1.05] tracking-tight text-binova-bone sm:text-4xl"
+                >
+                  Prenota una{" "}
+                  <span className="italic text-binova-gold-soft">visita.</span>
+                </h2>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-binova-bone/60">
+                  Lasciaci i tuoi recapiti, un nostro consulente ti
+                  ricontatterà entro 24 ore lavorative.
+                </p>
+              </div>
+            )}
 
             {status === "success" ? (
-              <div className="px-7 pb-2 pt-8 sm:px-10 sm:pt-10">
-                <div className="border border-binova-gold/30 bg-binova-gold/5 px-6 py-8 text-center">
+              <div className="px-7 pb-2 pt-14 sm:px-10 sm:pt-16">
+                <div className="border border-binova-gold/30 bg-binova-gold/5 px-6 py-10 text-center">
                   <span className="block text-[10px] uppercase tracking-[0.32em] text-binova-gold">
                     · Richiesta inviata
                   </span>
-                  <p className="mt-4 font-display text-2xl font-light text-binova-bone">
+                  <p className="mt-4 font-display text-2xl font-light text-binova-bone sm:text-3xl">
                     Grazie, {nome.split(" ")[0] || "a presto"}.
                   </p>
-                  <p className="mt-3 text-sm text-binova-bone/60">
+                  <p className="mt-3 text-sm leading-relaxed text-binova-bone/65">
                     Abbiamo ricevuto la tua richiesta. Ti ricontatteremo
-                    entro 24 ore al numero che ci hai lasciato.
+                    entro 24 ore lavorative al numero che ci hai lasciato.
                   </p>
                 </div>
                 <button
