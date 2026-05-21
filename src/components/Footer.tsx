@@ -3,13 +3,14 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer
-      className="relative border-t border-white/[0.06] bg-binova-black px-6 pb-10 pt-20 max-md:pt-12 lg:px-12 lg:pt-24"
+      className="relative border-t border-white/[0.06] bg-binova-black px-6 pb-10 pt-20 max-lg:pt-12 max-md:pt-6 max-md:pb-6 lg:px-12 lg:pt-24"
       style={{
-        paddingBottom: "max(2rem, env(safe-area-inset-bottom))",
+        paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))",
       }}
     >
       <div className="mx-auto max-w-[1600px]">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        {/* Brand + showroom info — hidden on phones (duplicates Contacts section right above) */}
+        <div className="flex flex-col gap-10 max-md:hidden lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="flex items-center gap-3">
               <span className="grid h-8 w-8 place-items-center border border-binova-bone/80">
@@ -35,11 +36,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/[0.06] pt-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="text-[10px] uppercase tracking-[0.32em] text-binova-bone/40">
+        {/* Bottom legal row */}
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/[0.06] pt-6 max-md:mt-0 max-md:border-t-0 max-md:pt-0 max-md:gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="text-[10px] uppercase tracking-[0.32em] text-binova-bone/40 max-md:text-center">
             © {new Date().getFullYear()} Binova — Cubo Design S.r.l. · P.IVA 01579900679
           </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[10px] uppercase tracking-[0.32em] text-binova-bone/40">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[10px] uppercase tracking-[0.32em] text-binova-bone/40 max-md:justify-center">
             <Link href="/privacy" className="hover:text-binova-bone transition-colors">
               Privacy
             </Link>
