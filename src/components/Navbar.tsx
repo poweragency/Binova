@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { label: "Cucine", href: "/#collections" },
+  { label: "Cucine", href: "/" },
   { label: "Heritage", href: "/heritage" },
   { label: "Showroom", href: "/showroom" },
   { label: "Contract", href: "/contract" },
@@ -13,8 +13,8 @@ const links = [
 ];
 
 function isActive(href: string, pathname: string): boolean {
-  // "Cucine" lights up on the home and on any kitchen detail page
-  if (href === "/#collections") {
+  // "Cucine" (root) lights on the home and on any kitchen detail page
+  if (href === "/") {
     return pathname === "/" || pathname.startsWith("/cucine");
   }
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -92,6 +92,14 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? "page" : undefined}
+                  onClick={(e) => {
+                    // If we're already on the home and "Cucine" is clicked,
+                    // smooth-scroll to top instead of a no-op navigation
+                    if (link.href === "/" && pathname === "/") {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
                   className={`group relative text-[11px] uppercase tracking-[0.28em] transition-colors ${
                     active
                       ? "text-binova-gold"
@@ -196,7 +204,13 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      onClick={() => setMobileOpen(false)}
+                      onClick={(e) => {
+                        if (link.href === "/" && pathname === "/") {
+                          e.preventDefault();
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                        setMobileOpen(false);
+                      }}
                       aria-current={active ? "page" : undefined}
                       className={`flex items-center justify-between py-5 font-display text-3xl transition-colors ${
                         active
