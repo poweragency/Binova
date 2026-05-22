@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import CookieBanner from "@/components/CookieBanner";
 import CustomCursor from "@/components/CustomCursor";
 import PageLoader from "@/components/PageLoader";
 import RevealOnScroll from "@/components/RevealOnScroll";
@@ -42,6 +43,7 @@ export default function RootLayout({
         <RevealOnScroll />
         <CustomCursor />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

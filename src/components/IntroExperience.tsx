@@ -9,7 +9,7 @@ const INTRO_SEEN_KEY = "binova-intro-seen";
 const MOBILE_QUERY = "(max-width: 767px)";
 
 const DESKTOP_VIDEO = "/intro.mp4";
-const DESKTOP_POSTER = "/intro-poster.png";
+const DESKTOP_POSTER = "/intro-poster.webp";
 const MOBILE_VIDEO = "/intro-mobile.mp4";
 const MOBILE_POSTER = "/intro-poster-mobile.jpg";
 

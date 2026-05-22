@@ -8,6 +8,7 @@ const links = [
   { label: "Cucine", href: "/" },
   { label: "Heritage", href: "/heritage" },
   { label: "Showroom", href: "/showroom" },
+  { label: "Progettazione", href: "/progettazione" },
   { label: "Contract", href: "/contract" },
   { label: "Eventi", href: "/eventi" },
 ];
@@ -95,7 +96,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav — active item highlighted gold */}
-          <nav className="hidden items-center gap-9 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex xl:gap-9">
             {links.map((link) => {
               const active = isActive(link.href, pathname);
               return (
