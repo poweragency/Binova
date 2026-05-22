@@ -130,12 +130,14 @@ export default async function CollectionPage({ params }: Props) {
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · {t("identity")}
             </span>
-            <h2 className="mt-6 font-display text-[clamp(2rem,3.5vw,3.5rem)] font-light leading-[1.05] tracking-tight text-binova-bone">
+            <h2 className="mt-6 font-display text-[clamp(1.3rem,1.8vw,1.75rem)] font-light leading-[1.35] tracking-tight text-binova-bone">
               {firstSentence}
             </h2>
-            <p className="mt-8 text-[clamp(1rem,1.1vw,1.1rem)] leading-relaxed text-binova-bone/70">
-              {restOfLong}
-            </p>
+            {restOfLong && (
+              <p className="mt-6 text-[clamp(1rem,1.1vw,1.1rem)] leading-relaxed text-binova-bone/70">
+                {restOfLong}
+              </p>
+            )}
           </div>
 
           <aside className="lg:col-span-5">
