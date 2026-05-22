@@ -11,7 +11,7 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
   const cookieStore = await cookies();
-  const introSeen = cookieStore.get("binova-intro-seen")?.value === "1";
+  const introSeen = cookieStore.get("binova-intro")?.value === "1";
 
   return (
     <main className="relative">

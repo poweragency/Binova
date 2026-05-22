@@ -6,7 +6,12 @@ import { useEffect, useRef, useState } from "react";
 
 type Phase = "idle" | "playing" | "done";
 
-const INTRO_SEEN_COOKIE = "binova-intro-seen";
+const INTRO_SEEN_COOKIE = "binova-intro";
+// 8 hours: long enough to cover a single browsing session, short enough
+// that returning visitors get the cinematic intro again the next day.
+// Chrome may persist session cookies (Max-Age-less) across browser restarts
+// when "Continue where you left off" is on, so we use an explicit Max-Age.
+const INTRO_COOKIE_MAX_AGE = 8 * 60 * 60;
 const MOBILE_QUERY = "(max-width: 767px)";
 
 const DESKTOP_VIDEO = "/intro.mp4";
@@ -52,8 +57,7 @@ export default function IntroExperience({
 
   useEffect(() => {
     if (phase === "done") {
-      // Session cookie (no Max-Age) so it expires when the browser closes
-      document.cookie = `${INTRO_SEEN_COOKIE}=1; path=/; SameSite=Lax`;
+      document.cookie = `${INTRO_SEEN_COOKIE}=1; path=/; Max-Age=${INTRO_COOKIE_MAX_AGE}; SameSite=Lax`;
       videoRef.current?.pause();
     }
   }, [phase]);
