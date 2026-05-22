@@ -75,12 +75,6 @@ export default function Hero() {
                   →
                 </span>
               </a>
-              <a
-                href="#showroom"
-                className="text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 hover:text-binova-bone transition-colors max-md:py-3 max-md:text-center"
-              >
-                Showroom Milano
-              </a>
             </div>
           </div>
         </div>

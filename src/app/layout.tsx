@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   title: "Binova — Cucine d'autore dal 1958",
   description:
     "Cucine moderne di lusso, artigianato italiano dal 1958. Showroom Milano, Via Durini 17.",
-  metadataBase: new URL("https://binova.local"),
+  metadataBase: new URL("https://binova-git-main-poweragency.vercel.app"),
   openGraph: {
     title: "Binova — Cucine d'autore dal 1958",
     description: "Cucine moderne di lusso, artigianato italiano dal 1958.",

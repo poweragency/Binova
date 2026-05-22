@@ -129,16 +129,35 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Desktop CTA — points to #contact on current page */}
-          <Link
-            href="#contact"
-            className="group hidden items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-binova-bone/80 hover:text-binova-gold transition-colors lg:flex"
-          >
-            <span className="hidden sm:inline">Prenota visita</span>
-            <span className="grid h-9 w-9 place-items-center border border-binova-bone/30 transition-all duration-500 group-hover:border-binova-gold group-hover:rotate-45">
-              <span className="h-1.5 w-1.5 bg-binova-bone group-hover:bg-binova-gold transition-colors" />
-            </span>
-          </Link>
+          {/* Desktop right cluster: lang switch + CTA */}
+          <div className="hidden items-center gap-6 lg:flex">
+            {/* Lang switcher — IT active, EN points to the official English site */}
+            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.28em]">
+              <span className="text-binova-gold">IT</span>
+              <span className="text-binova-bone/30">/</span>
+              <a
+                href="https://en.binova.it"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-binova-bone/55 hover:text-binova-bone transition-colors"
+              >
+                EN
+              </a>
+            </div>
+
+            {/* Prenota visita CTA */}
+            <Link
+              href="#contact"
+              className="group flex items-center gap-3 text-binova-bone/80 hover:text-binova-gold transition-colors"
+            >
+              <span className="hidden text-[11px] uppercase tracking-[0.28em] sm:inline">
+                Prenota visita
+              </span>
+              <span className="grid h-9 w-9 place-items-center border border-binova-bone/30 transition-all duration-500 group-hover:border-binova-gold group-hover:rotate-45">
+                <span className="h-1.5 w-1.5 bg-binova-bone group-hover:bg-binova-gold transition-colors" />
+              </span>
+            </Link>
+          </div>
 
           {/* Mobile hamburger — visible only below lg */}
           <button
@@ -280,9 +299,24 @@ export default function Navbar() {
                 →
               </span>
             </Link>
-            <div className="flex flex-col gap-1 text-[10px] uppercase tracking-[0.32em] text-binova-bone/40">
-              <span>Showroom Milano</span>
-              <span>Via Durini 17 · 20122</span>
+
+            <div className="flex items-center justify-between gap-4 pt-2 text-[10px] uppercase tracking-[0.32em]">
+              <div className="flex flex-col gap-1 text-binova-bone/40">
+                <span>Showroom Milano</span>
+                <span>Via Durini 17 · 20122</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-binova-gold">IT</span>
+                <span className="text-binova-bone/30">/</span>
+                <a
+                  href="https://en.binova.it"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-binova-bone/55 hover:text-binova-bone transition-colors"
+                >
+                  EN
+                </a>
+              </div>
             </div>
           </div>
         </nav>

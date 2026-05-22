@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { collections, getCollectionBySlug } from "@/data/collections";
+import { collections, getCollectionBySlug, CATALOG_PDF_URL } from "@/data/collections";
 import { getMaterialDescription } from "@/data/materials";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -143,15 +143,28 @@ export default async function CollectionPage({ params }: Props) {
               ))}
             </ul>
 
-            <a
-              href="#contact"
-              className="group mt-10 inline-flex items-center gap-4 border border-binova-bone/30 px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-all duration-500 hover:border-binova-gold hover:text-binova-gold"
-            >
-              Richiedi {collection.name}
-              <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
-                →
-              </span>
-            </a>
+            <div className="mt-10 flex flex-wrap items-center gap-4 max-md:flex-col max-md:items-stretch">
+              <a
+                href="#contact"
+                className="group inline-flex items-center justify-between gap-4 border border-binova-bone/30 px-8 py-4 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-all duration-500 hover:border-binova-gold hover:text-binova-gold max-md:px-6"
+              >
+                Richiedi {collection.name}
+                <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+              <a
+                href={CATALOG_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-2 py-3 text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 hover:text-binova-bone transition-colors max-md:border max-md:border-binova-bone/15 max-md:px-6 max-md:py-4 max-md:justify-between"
+              >
+                Scarica catalogo PDF
+                <span aria-hidden className="inline-block transition-transform duration-500 group-hover:translate-x-1">
+                  ↗
+                </span>
+              </a>
+            </div>
           </aside>
         </div>
       </section>

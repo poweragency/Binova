@@ -1,5 +1,12 @@
 import Link from "next/link";
 
+const exploreLinks = [
+  { label: "Durini Design", href: "/durini-design" },
+  { label: "Press", href: "/press" },
+  { label: "Euroluce", href: "/euroluce" },
+  { label: "Progettazione", href: "/progettazione" },
+];
+
 export default function Footer() {
   return (
     <footer
@@ -9,9 +16,10 @@ export default function Footer() {
       }}
     >
       <div className="mx-auto max-w-[1600px]">
-        {/* Brand + showroom info — hidden on phones (duplicates Contacts section right above) */}
-        <div className="flex flex-col gap-10 max-md:hidden lg:flex-row lg:items-end lg:justify-between">
-          <div>
+        {/* Brand + secondary links + showroom info — hidden on phones */}
+        <div className="grid gap-10 max-md:hidden lg:grid-cols-12 lg:gap-16">
+          {/* Brand block */}
+          <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
               <span className="grid h-8 w-8 place-items-center border border-binova-bone/80">
                 <span className="h-3 w-3 bg-binova-bone" />
@@ -24,7 +32,27 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2 text-[10px] uppercase tracking-[0.32em] text-binova-bone/50 lg:text-right">
+          {/* Secondary nav — discover */}
+          <div className="lg:col-span-3">
+            <span className="text-[10px] uppercase tracking-[0.32em] text-binova-bone/45">
+              · Esplora
+            </span>
+            <ul className="mt-4 flex flex-col gap-2.5">
+              {exploreLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-binova-bone/75 hover:text-binova-gold-soft transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Showroom contact */}
+          <div className="flex flex-col gap-2 text-[10px] uppercase tracking-[0.32em] text-binova-bone/50 lg:col-span-4 lg:text-right">
             <span>Showroom Milano</span>
             <span className="text-binova-bone/70">Via Durini 17 · 20122 Milano</span>
             <a
@@ -32,6 +60,12 @@ export default function Footer() {
               className="text-binova-bone/70 hover:text-binova-gold transition-colors"
             >
               info@binovamilano.it
+            </a>
+            <a
+              href="tel:+390229061826"
+              className="text-binova-bone/70 hover:text-binova-gold transition-colors"
+            >
+              +39 02 2906 1826
             </a>
           </div>
         </div>

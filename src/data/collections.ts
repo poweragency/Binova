@@ -10,6 +10,11 @@ export type Collection = {
   materials?: string[];
 };
 
+// Catalogo PDF generale Binova 2026 (Architecture Vol. III)
+// Valido per tutte le collezioni — il catalogo unico copre l'intera linea.
+export const CATALOG_PDF_URL =
+  "https://www.binova.it/docs/1325/catalogo-binova-cucine-2025_web.pdf";
+
 export const collections: Collection[] = [
   {
     code: "01",
