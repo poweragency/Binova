@@ -2,7 +2,10 @@
 
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
+
+const LOCALES = ["it", "en", "de", "es", "fr"] as const;
+type LocaleCode = (typeof LOCALES)[number];
 
 function isActive(href: string, pathname: string): boolean {
   if (href === "/") {
@@ -14,11 +17,12 @@ function isActive(href: string, pathname: string): boolean {
 export default function Navbar() {
   const t = useTranslations("nav");
   const tCommon = useTranslations("common");
-  const locale = useLocale();
+  const locale = useLocale() as LocaleCode;
   const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [pending, startTransition] = useTransition();
   const previousPath = useRef(pathname);
 
   const links = [
@@ -68,10 +72,41 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
-  const switchLocale = (next: "it" | "en") => {
-    if (next === locale) return;
-    router.replace(pathname, { locale: next });
+  const switchLocale = (next: LocaleCode) => {
+    if (next === locale || pending) return;
+    // useTransition lets the new route prepare in the background so the
+    // visible page stays mounted until ready, removing the abrupt flash.
+    startTransition(() => {
+      router.replace(pathname, { locale: next });
+    });
   };
+
+  const LangSwitch = ({ size = "sm" }: { size?: "sm" | "md" }) => (
+    <div
+      className={`flex items-center text-[11px] uppercase tracking-[0.28em] transition-opacity duration-300 ${
+        pending ? "opacity-50" : "opacity-100"
+      } ${size === "md" ? "gap-3" : "gap-2"}`}
+      aria-busy={pending}
+    >
+      {LOCALES.map((code, i) => (
+        <span key={code} className="contents">
+          {i > 0 && <span className="text-binova-bone/25">/</span>}
+          <button
+            type="button"
+            onClick={() => switchLocale(code)}
+            disabled={pending}
+            className={
+              code === locale
+                ? "text-binova-gold"
+                : "text-binova-bone/55 hover:text-binova-bone transition-colors disabled:cursor-wait"
+            }
+          >
+            {code.toUpperCase()}
+          </button>
+        </span>
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -128,31 +163,7 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-6 lg:flex">
-            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.28em]">
-              <button
-                type="button"
-                onClick={() => switchLocale("it")}
-                className={
-                  locale === "it"
-                    ? "text-binova-gold"
-                    : "text-binova-bone/55 hover:text-binova-bone transition-colors"
-                }
-              >
-                IT
-              </button>
-              <span className="text-binova-bone/30">/</span>
-              <button
-                type="button"
-                onClick={() => switchLocale("en")}
-                className={
-                  locale === "en"
-                    ? "text-binova-gold"
-                    : "text-binova-bone/55 hover:text-binova-bone transition-colors"
-                }
-              >
-                EN
-              </button>
-            </div>
+            <LangSwitch />
 
             <Link
               href="#contact"
@@ -194,6 +205,14 @@ export default function Navbar() {
             </span>
           </button>
         </div>
+
+        {/* Subtle progress bar shown during locale transition for premium feel */}
+        <span
+          aria-hidden
+          className={`pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left bg-binova-gold transition-transform duration-700 ease-out ${
+            pending ? "scale-x-100" : "scale-x-0"
+          }`}
+        />
       </header>
 
       <div
@@ -303,36 +322,12 @@ export default function Navbar() {
               </span>
             </Link>
 
-            <div className="flex items-center justify-between gap-4 pt-2 text-[10px] uppercase tracking-[0.32em]">
+            <div className="flex flex-col gap-3 pt-2 text-[10px] uppercase tracking-[0.32em]">
               <div className="flex flex-col gap-1 text-binova-bone/40">
                 <span>Showroom Milano</span>
                 <span>Via Durini 17 · 20122</span>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => switchLocale("it")}
-                  className={
-                    locale === "it"
-                      ? "text-binova-gold"
-                      : "text-binova-bone/55 hover:text-binova-bone transition-colors"
-                  }
-                >
-                  IT
-                </button>
-                <span className="text-binova-bone/30">/</span>
-                <button
-                  type="button"
-                  onClick={() => switchLocale("en")}
-                  className={
-                    locale === "en"
-                      ? "text-binova-gold"
-                      : "text-binova-bone/55 hover:text-binova-bone transition-colors"
-                  }
-                >
-                  EN
-                </button>
-              </div>
+              <LangSwitch size="md" />
             </div>
           </div>
         </nav>

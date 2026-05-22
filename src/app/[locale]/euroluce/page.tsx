@@ -5,8 +5,8 @@ import { Link } from "@/i18n/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contacts from "@/components/sections/Contacts";
-
-type Locale = "it" | "en";
+import type { LocaleKey } from "@/data/collections";
+import { type Localized, pick } from "@/data/localized";
 
 export async function generateMetadata({
   params,
@@ -25,8 +25,8 @@ type LightingEvent = {
   year: string;
   partner: string;
   image?: string;
-  title: Record<Locale, string>;
-  desc: Record<Locale, string>;
+  title: Localized;
+  desc: Localized;
 };
 
 const events: LightingEvent[] = [
@@ -37,10 +37,16 @@ const events: LightingEvent[] = [
     title: {
       it: "Euroluce 2026 — la luce come architettura",
       en: "Euroluce 2026 — light as architecture",
+      de: "Euroluce 2026 — Licht als Architektur",
+      es: "Euroluce 2026 — la luz como arquitectura",
+      fr: "Euroluce 2026 — la lumière comme architecture",
     },
     desc: {
       it: "La cucina e la luce convivono nello stesso spazio. Per Euroluce 2026 Binova presenta nello showroom di Via Durini una serie di scenografie luminose pensate per accompagnare le nuove collezioni Avola e Bluna: corpi sospesi, strisce LED retro-illuminanti per i fondali in marmo, integrazione tecnica diretta nei pensili.",
       en: "Kitchen and light share the same space. For Euroluce 2026, Binova presents at the Via Durini showroom a series of lighting scenes designed to accompany the new Avola and Bluna collections: suspended fixtures, back-lit LED strips for marble backdrops, technical integration directly into the upper cabinets.",
+      de: "Küche und Licht teilen sich denselben Raum. Für Euroluce 2026 präsentiert Binova im Showroom in der Via Durini eine Reihe von Lichtszenarien, die die neuen Kollektionen Avola und Bluna begleiten: Hängeleuchten, hinterleuchtete LED-Streifen für Marmor-Hintergründe, technische Integration direkt in die Oberschränke.",
+      es: "La cocina y la luz conviven en el mismo espacio. Para Euroluce 2026 Binova presenta en el showroom de Via Durini una serie de escenografías luminosas pensadas para acompañar las nuevas colecciones Avola y Bluna: cuerpos suspendidos, tiras LED retroiluminadas para los fondos de mármol, integración técnica directa en los muebles altos.",
+      fr: "La cuisine et la lumière cohabitent dans le même espace. Pour Euroluce 2026, Binova présente au showroom de la Via Durini une série de scénographies lumineuses pensées pour accompagner les nouvelles collections Avola et Bluna : luminaires suspendus, bandeaux LED rétro-éclairants pour les fonds en marbre, intégration technique directe dans les meubles hauts.",
     },
   },
   {
@@ -50,10 +56,16 @@ const events: LightingEvent[] = [
     title: {
       it: "Panzeri × Matteo Thun",
       en: "Panzeri × Matteo Thun",
+      de: "Panzeri × Matteo Thun",
+      es: "Panzeri × Matteo Thun",
+      fr: "Panzeri × Matteo Thun",
     },
     desc: {
       it: "Talk con l'architetto e designer Matteo Thun sul ruolo della luce nella cucina contemporanea. Presentazione delle collezioni Panzeri ospitate nello showroom: corpi orientabili, lampade a sospensione magnetiche, dimmer integrati ai sistemi di domotica.",
       en: "Talk with architect and designer Matteo Thun on the role of light in the contemporary kitchen. Presentation of the Panzeri collections hosted in the showroom: directional fixtures, magnetic suspension lamps, dimmers integrated with home-automation systems.",
+      de: "Gespräch mit Architekt und Designer Matteo Thun über die Rolle des Lichts in der zeitgenössischen Küche. Präsentation der Panzeri-Kollektionen im Showroom: richtbare Leuchten, magnetische Pendelleuchten, in Smart-Home-Systeme integrierte Dimmer.",
+      es: "Charla con el arquitecto y diseñador Matteo Thun sobre el papel de la luz en la cocina contemporánea. Presentación de las colecciones Panzeri acogidas en el showroom: cuerpos orientables, lámparas de suspensión magnéticas, reguladores integrados en sistemas domóticos.",
+      fr: "Conférence avec l'architecte et designer Matteo Thun sur le rôle de la lumière dans la cuisine contemporaine. Présentation des collections Panzeri accueillies dans le showroom : luminaires orientables, suspensions magnétiques, variateurs intégrés aux systèmes domotiques.",
     },
   },
   {
@@ -62,24 +74,36 @@ const events: LightingEvent[] = [
     title: {
       it: "Sfere. Rotazioni. Ritorni.",
       en: "Spheres. Rotations. Returns.",
+      de: "Sphären. Rotationen. Rückkehr.",
+      es: "Esferas. Rotaciones. Retornos.",
+      fr: "Sphères. Rotations. Retours.",
     },
     desc: {
       it: "Installazione luminosa di Panzeri all'interno dello showroom Binova: sfere sospese in movimento controllato, ombre proiettate sui top in marmo, gioco di volumi che dialogano con la cucina sottostante.",
       en: "Panzeri lighting installation inside the Binova showroom: suspended spheres in controlled motion, shadows projected onto marble worktops, an interplay of volumes in dialogue with the kitchen below.",
+      de: "Panzeri-Lichtinstallation im Binova-Showroom: hängende Kugeln in kontrollierter Bewegung, auf Marmor-Arbeitsplatten projizierte Schatten, ein Volumenspiel im Dialog mit der darunter liegenden Küche.",
+      es: "Instalación luminosa de Panzeri dentro del showroom Binova: esferas suspendidas en movimiento controlado, sombras proyectadas sobre las encimeras de mármol, juego de volúmenes que dialogan con la cocina inferior.",
+      fr: "Installation lumineuse de Panzeri à l'intérieur du showroom Binova : sphères suspendues en mouvement contrôlé, ombres projetées sur les plans de travail en marbre, jeu de volumes en dialogue avec la cuisine en dessous.",
     },
   },
 ];
 
-const partners: { name: string; role: Record<Locale, string>; desc: Record<Locale, string> }[] = [
+const partners: { name: string; role: Localized; desc: Localized }[] = [
   {
     name: "Panzeri",
     role: {
       it: "Illuminazione tecnica e decorativa",
       en: "Technical and decorative lighting",
+      de: "Technische und dekorative Beleuchtung",
+      es: "Iluminación técnica y decorativa",
+      fr: "Éclairage technique et décoratif",
     },
     desc: {
       it: "Storico partner Binova per i corpi illuminanti integrati nelle cucine.",
       en: "Long-standing Binova partner for lighting fixtures integrated into the kitchens.",
+      de: "Langjähriger Binova-Partner für in Küchen integrierte Leuchten.",
+      es: "Histórico partner de Binova para los cuerpos luminosos integrados en las cocinas.",
+      fr: "Partenaire historique de Binova pour les luminaires intégrés aux cuisines.",
     },
   },
   {
@@ -87,10 +111,16 @@ const partners: { name: string; role: Record<Locale, string>; desc: Record<Local
     role: {
       it: "Decorativo da soffitto",
       en: "Decorative ceiling lighting",
+      de: "Dekorative Deckenleuchten",
+      es: "Decorativo de techo",
+      fr: "Décoratif de plafond",
     },
     desc: {
       it: "Sospensioni firmate per i progetti contract di alto profilo.",
       en: "Signature pendant lighting for high-profile contract projects.",
+      de: "Signatur-Pendelleuchten für hochkarätige Contract-Projekte.",
+      es: "Suspensiones firmadas para los proyectos contract de alto perfil.",
+      fr: "Suspensions signées pour les projets contract de haut niveau.",
     },
   },
   {
@@ -98,10 +128,16 @@ const partners: { name: string; role: Record<Locale, string>; desc: Record<Local
     role: {
       it: "Lampade scultoree",
       en: "Sculptural lamps",
+      de: "Skulpturale Lampen",
+      es: "Lámparas escultóricas",
+      fr: "Lampes sculpturales",
     },
     desc: {
       it: "Pezzi unici per le nicchie e le tavole dell'isola.",
       en: "Unique pieces for niches and island tables.",
+      de: "Einzelstücke für Nischen und Inseltische.",
+      es: "Piezas únicas para los nichos y las mesas de la isla.",
+      fr: "Pièces uniques pour les niches et les tables d'îlot.",
     },
   },
   {
@@ -109,10 +145,16 @@ const partners: { name: string; role: Record<Locale, string>; desc: Record<Local
     role: {
       it: "Tecnica architettonica",
       en: "Architectural technical lighting",
+      de: "Architektonisches technisches Licht",
+      es: "Técnica arquitectónica",
+      fr: "Technique architecturale",
     },
     desc: {
       it: "Spot da incasso e profili LED per i fondali integrati.",
       en: "Recessed spots and LED profiles for integrated backdrops.",
+      de: "Einbaustrahler und LED-Profile für integrierte Hintergründe.",
+      es: "Focos empotrables y perfiles LED para los fondos integrados.",
+      fr: "Spots encastrés et profilés LED pour les arrière-plans intégrés.",
     },
   },
 ];
@@ -124,7 +166,7 @@ export default async function EurolucePage({
 }) {
   const { locale: rawLocale } = await params;
   setRequestLocale(rawLocale);
-  const locale = rawLocale as Locale;
+  const locale = rawLocale as LocaleKey;
   const t = await getTranslations("euroluce");
   const tNav = await getTranslations("nav");
 
@@ -200,7 +242,7 @@ export default async function EurolucePage({
                   <div className="relative aspect-square w-full overflow-hidden border border-white/[0.06] bg-binova-stone lg:col-span-5">
                     <Image
                       src={event.image}
-                      alt={event.title[locale]}
+                      alt={pick(event.title, locale)}
                       fill
                       quality={90}
                       sizes="(max-width: 1024px) 100vw, 40vw"
@@ -213,10 +255,10 @@ export default async function EurolucePage({
                     · {event.partner} · {event.year}
                   </span>
                   <h3 className="mt-4 font-display text-[clamp(1.8rem,3vw,2.8rem)] font-light leading-[1.1] text-binova-bone">
-                    {event.title[locale]}
+                    {pick(event.title, locale)}
                   </h3>
                   <p className="mt-6 text-[clamp(0.95rem,1.1vw,1.05rem)] leading-relaxed text-binova-bone/65">
-                    {event.desc[locale]}
+                    {pick(event.desc, locale)}
                   </p>
                 </div>
               </article>
@@ -249,11 +291,11 @@ export default async function EurolucePage({
                   {p.name}
                 </h3>
                 <span className="text-[10px] uppercase tracking-[0.32em] text-binova-gold-soft">
-                  {p.role[locale]}
+                  {pick(p.role, locale)}
                 </span>
                 <span className="block h-px w-8 bg-binova-gold/40" />
                 <p className="text-sm leading-relaxed text-binova-bone/55">
-                  {p.desc[locale]}
+                  {pick(p.desc, locale)}
                 </p>
               </li>
             ))}

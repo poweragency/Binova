@@ -16,7 +16,9 @@ export default async function PrivacyPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  if (locale === "en") {
+  // DE/ES/FR fall back to the English convenience translation until
+  // localised legal copy is reviewed by counsel. IT remains the binding text.
+  if (locale !== "it") {
     return (
       <LegalLayout
         eyebrow="Privacy"

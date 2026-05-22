@@ -1,9 +1,9 @@
 import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
-  locales: ["it", "en"],
+  locales: ["it", "en", "de", "es", "fr"],
   defaultLocale: "it",
-  // IT pages stay at /heritage, EN pages get /en/heritage prefix
+  // IT pages stay at /heritage, other locales get /<locale>/heritage prefix
   localePrefix: "as-needed",
 });
 

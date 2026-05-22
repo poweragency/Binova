@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Phase = "idle" | "playing" | "done";
 
-const INTRO_SEEN_KEY = "binova-intro-seen";
+const INTRO_SEEN_COOKIE = "binova-intro-seen";
 const MOBILE_QUERY = "(max-width: 767px)";
 
 const DESKTOP_VIDEO = "/intro.mp4";
@@ -15,17 +15,20 @@ const MOBILE_VIDEO = "/intro-mobile.mp4";
 const MOBILE_POSTER = "/intro-poster-mobile.jpg";
 
 export default function IntroExperience({
+  initialSeen = false,
   children,
 }: {
+  initialSeen?: boolean;
   children: React.ReactNode;
 }) {
   const t = useTranslations("intro");
   const tCommon = useTranslations("common");
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [phase, setPhase] = useState<Phase>("idle");
+  // initialSeen is read from a cookie on the server. When true, the overlay
+  // is hidden from the very first paint — including across locale switches.
+  const [phase, setPhase] = useState<Phase>(initialSeen ? "done" : "idle");
   const [isMobile, setIsMobile] = useState(false);
 
-  // Device detection — desktop video for tablet+ (≥768px), mobile video for phones
   useEffect(() => {
     const mql = window.matchMedia(MOBILE_QUERY);
     const update = () => setIsMobile(mql.matches);
@@ -34,32 +37,27 @@ export default function IntroExperience({
     return () => mql.removeEventListener("change", update);
   }, []);
 
-  // Skip intro if already seen this session OR URL has a hash
   useEffect(() => {
-    const hasHash = window.location.hash.length > 1;
-    const seenIntro = sessionStorage.getItem(INTRO_SEEN_KEY) === "1";
-    if (hasHash || seenIntro) {
+    if (phase === "done") return;
+    if (window.location.hash.length > 1) {
       setPhase("done");
-      if (hasHash) {
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            const el = document.querySelector(window.location.hash);
-            el?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 80);
-        });
-      }
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const el = document.querySelector(window.location.hash);
+          el?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 80);
+      });
     }
-  }, []);
+  }, [phase]);
 
-  // Persist completion; pause video to free CPU
   useEffect(() => {
     if (phase === "done") {
-      sessionStorage.setItem(INTRO_SEEN_KEY, "1");
+      // Session cookie (no Max-Age) so it expires when the browser closes
+      document.cookie = `${INTRO_SEEN_COOKIE}=1; path=/; SameSite=Lax`;
       videoRef.current?.pause();
     }
   }, [phase]);
 
-  // Lock body scroll during intro
   useEffect(() => {
     document.body.style.overflow = phase === "done" ? "" : "hidden";
     return () => {
@@ -90,19 +88,25 @@ export default function IntroExperience({
   const videoSrc = isMobile ? MOBILE_VIDEO : DESKTOP_VIDEO;
   const posterSrc = isMobile ? MOBILE_POSTER : DESKTOP_POSTER;
 
+  // When the intro was already seen we don't render the overlay at all.
+  // This eliminates the flash on locale switch and on intra-session
+  // navigation back to the home page.
+  if (initialSeen && phase === "done") {
+    return <>{children}</>;
+  }
+
   return (
     <>
       {children}
 
       <div
         aria-hidden={phase === "done"}
-        className={`fixed inset-0 z-[100] bg-binova-black transition-opacity duration-150 ease-out ${
+        className={`fixed inset-0 z-[100] bg-binova-black transition-opacity duration-500 ease-out ${
           phase === "done"
             ? "opacity-0 pointer-events-none"
             : "opacity-100"
         }`}
       >
-        {/* Poster — desktop or mobile, switched once isMobile resolved */}
         <Image
           key={posterSrc}
           src={posterSrc}
@@ -116,7 +120,6 @@ export default function IntroExperience({
           }`}
         />
 
-        {/* Video — src swaps based on viewport, key forces reload on swap */}
         <video
           key={videoSrc}
           ref={videoRef}
@@ -130,14 +133,12 @@ export default function IntroExperience({
           }`}
         />
 
-        {/* Idle UI — door CTA */}
         {phase === "idle" && (
           <button
             onClick={handleEnter}
             className="group absolute inset-0 focus:outline-none"
             aria-label={t("ariaLabel")}
           >
-            {/* Door hotspot — position differs per orientation */}
             <span
               className={`pointer-events-none absolute left-1/2 -translate-x-1/2 -translate-y-1/2 ${
                 isMobile ? "top-[68%]" : "top-[75%]"

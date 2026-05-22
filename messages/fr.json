@@ -1,0 +1,386 @@
+{
+  "common": {
+    "discover": "Découvrir",
+    "discoverMore": "Découvrir plus",
+    "exploreCollections": "Explorer les collections",
+    "bookVisit": "Réserver une visite",
+    "bookVisitFull": "Réserver une visite",
+    "requestKitchen": "Demander {name}",
+    "downloadCatalog": "Télécharger le catalogue PDF",
+    "openMaps": "Ouvrir dans Google Maps",
+    "tapToCall": "Toucher pour appeler",
+    "hours": "Lun–Sam · 10:00–19:00",
+    "address": "Via Durini 17, 20122 Milan",
+    "phone": "+39 02 2906 1826",
+    "email": "info@binovamilano.it",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer",
+    "skipIntro": "Passer l'intro",
+    "all": "Tous"
+  },
+
+  "nav": {
+    "kitchens": "Cuisines",
+    "heritage": "Heritage",
+    "showroom": "Showroom",
+    "design": "Conception",
+    "contract": "Contract",
+    "events": "Événements",
+    "duriniDesign": "Durini Design",
+    "press": "Presse",
+    "euroluce": "Euroluce",
+    "explore": "Explorer",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "menu": "Menu"
+  },
+
+  "intro": {
+    "enter": "Entrer",
+    "subtitle": "Showroom Milan · Via Durini 17",
+    "ariaLabel": "Entrer dans le showroom Binova"
+  },
+
+  "hero": {
+    "eyebrow": "Collection 2026 · Salone del Mobile Milan",
+    "titleLine1": "Cuisines d'auteur",
+    "titleLine2": "depuis 1958.",
+    "tagline": "De Petrignano d'Assisi à Milan. Soixante-six ans d'artisanat évolué en langage contemporain. Chaque cuisine est dessinée autour de l'architecture qui l'accueille.",
+    "stats": {
+      "founded": "Fondée",
+      "factoryOne": "Factory-One Notaresco",
+      "collectionsCount": "8",
+      "collectionsLabel": "Collections signature",
+      "madeInItalyValue": "Made in Italy",
+      "madeInItalyLabel": "Sans compromis"
+    },
+    "sideTicker": "Scroll · Cuisines modernes de luxe"
+  },
+
+  "collections": {
+    "eyebrow": "Collections",
+    "titleLine1": "Huit façons",
+    "titleItalic": "d'habiter la matière.",
+    "intro": "Chaque collection naît d'une idée d'espace. Matériaux durables, 22 finitions au catalogue 2026, laquages à excimères, verres Rain obtenus par soustraction à l'acide."
+  },
+
+  "cucine": {
+    "identity": "Identité",
+    "materials": "Matériaux signature",
+    "gallery": "Galerie",
+    "galleryTitle": "Atmosphères {name}.",
+    "breadcrumb": "Collections",
+    "openImage": "Ouvrir {name} — vue {n} en plein écran",
+    "viewAlt": "{name} — vue {n}",
+    "lightbox": {
+      "close": "Fermer",
+      "prev": "Image précédente",
+      "next": "Image suivante"
+    }
+  },
+
+  "heritage": {
+    "eyebrow": "1958 — 2026",
+    "titleLine1": "De Petrignano",
+    "titleItalic": "à Milan.",
+    "tagline": "Soixante-six ans dans l'atelier, dans l'usine, sur le chantier. Chaque geste que nous faisons aujourd'hui a été dessiné par une main en 1958 et remodelé cent fois par ceux qui sont venus après.",
+    "timelineTitle": "Cinq",
+    "timelineItalic": "étapes.",
+    "timeline": {
+      "1958": "Giovanni et Francesco Bolletta fondent l'atelier à Petrignano d'Assisi.",
+      "1970s": "Industrialisation des processus, inspirée de la culture automobile américaine.",
+      "2018": "Ouverture de Factory-One à Notaresco : 25 000 m² de production 4.0.",
+      "2022": "Cubo Design rejoint Italian Design Brands (IDB).",
+      "2026": "Nouvelle collection au Salone del Mobile de Milan."
+    },
+    "pillarsTitle": "Ce que nous portons depuis",
+    "pillarsItalic": "1958.",
+    "pillars": {
+      "madeInItaly": {
+        "title": "Made in Italy",
+        "body": "Chaîne d'approvisionnement entièrement italienne. Bois, métaux, grès et verre travaillés dans nos propres usines."
+      },
+      "sustainability": {
+        "title": "Durabilité",
+        "body": "Laquage à excimères, bois composites durables, matériaux à chaîne d'approvisionnement tracée."
+      },
+      "craftsmanship": {
+        "title": "Artisanat 4.0",
+        "body": "La précision de la CNC, le jugement de l'artisan. Chaque cuisine passe par les deux mains."
+      },
+      "architecture": {
+        "title": "Architecture",
+        "body": "Nous ne vendons pas de meubles. Nous dessinons l'espace qui les accueillera."
+      }
+    }
+  },
+
+  "showroom": {
+    "eyebrow": "Via Durini 17 · Milan",
+    "titleLine1": "Milan,",
+    "titleItalic": "Durini Design District.",
+    "tagline": "350 m² au cœur du quartier du design milanais. Sur rendez-vous avec notre équipe d'architectes et de designers.",
+    "placeEyebrow": "Le lieu",
+    "placeTitle": "Pas un magasin.",
+    "placeItalic": "Un laboratoire.",
+    "placeBody1": "Via Durini est le quartier du design milanais depuis cinquante ans. Notre showroom, à quelques mètres de l'Università Statale, est conçu pour être parcouru comme un appartement — non comme une exposition de produit. Chaque coin est un environnement dessiné : cuisine, séjour, cellier, table à manger.",
+    "placeBody2": "Chez nous, vous pouvez voir les matériaux en vrai, toucher les finitions, cuisiner dans le showroom lors d'événements de showcooking et parler avec ceux qui dessinent les cuisines — et pas seulement avec ceux qui les vendent.",
+    "visitEyebrow": "Visite",
+    "visit": {
+      "architects": {
+        "label": "Pour architectes & designers",
+        "body": "Visites guidées hebdomadaires, accès aux catalogues techniques et aux échantillons de finition. Conditions dédiées aux studios."
+      },
+      "private": {
+        "label": "Pour clients privés",
+        "body": "Rendez-vous individuel avec un concepteur pour la planification sur mesure de votre cuisine."
+      },
+      "events": {
+        "label": "Événements",
+        "body": "Showcooking, présentations partenaires, design week.",
+        "link": "Calendrier des événements"
+      }
+    }
+  },
+
+  "contract": {
+    "eyebrow": "Binova Milano Contract System",
+    "titleLine1": "Une cuisine unique",
+    "titleItalic": "pour un environnement unique.",
+    "tagline": "Nous aimons imaginer l'espace dédié à la cuisine comme un centre de vie et un lieu de rassemblement. En ce sens, pour nous, cuisine est synonyme de cœur.",
+    "introEyebrow": "Solutions de luxe",
+    "introTitle": "Conception sur mesure pour hôtels, résidences privées et projets hospitality haut de gamme.",
+    "introBody1": "Notre Contract Division suit le projet de la planification architecturale à l'installation, intégrant les cuisines Binova dans l'identité du lieu qui les accueille. Nous travaillons avec des cabinets d'architecture, des entrepreneurs généraux et des maîtres d'ouvrage directs sur des projets résidentiels de prestige, des suites d'hôtel, des villas privées et des penthouses de représentation.",
+    "introBody2": "Pour chaque projet contract, Binova met à disposition une équipe dédiée : chef de projet, concepteur, technicien de chantier. Une seule interface, des premiers plans à la réception finale.",
+    "includesEyebrow": "Ce que nous incluons",
+    "includes": {
+      "design": {
+        "title": "Conception exécutive et plans techniques",
+        "body": "Plans exécutifs au format architectural (plans, élévations, coupes, détails constructifs), nomenclatures de matériaux et finitions, fiches techniques de tous les électroménagers intégrés. Documentation complète remise au cabinet d'architecture pour la coordination avec les autres corps de métier."
+      },
+      "materials": {
+        "title": "Sélection de finitions et de matériaux selon brief",
+        "body": "Visite guidée du showroom de Via Durini avec matériauthèque complète : 22 finitions du catalogue 2026, plus de 60 essences de bois, marbres naturels et grès grand format. Sélection partagée avec l'architecte d'intérieur et la direction des travaux ; échantillons physiques livrés au cabinet."
+      },
+      "appliances": {
+        "title": "Coordination des électroménagers premium",
+        "body": "Intégration d'électroménagers Miele, Gaggenau, Sub-Zero, V-Zug, Wolf et Bertazzoni. Étude des encastrements, gestion logistique directe avec le fournisseur, vérification des alimentations et tolérances sur le chantier avant la pose."
+      },
+      "logistics": {
+        "title": "Logistique et installation sur chantier",
+        "body": "Livraison programmée sur le planning du chantier par des installateurs certifiés Binova. Gestion des colis, démontage et remontage sur le chantier, coordination avec électriciens, plombiers et poseurs de l'étage. Nettoyage post-installation inclus."
+      },
+      "supervision": {
+        "title": "Direction des travaux et réception finale",
+        "body": "Un chef de projet Binova dédié à l'ensemble du chantier. Inspections périodiques, vérification des tolérances, calibrage des composants, essai fonctionnel de tous les électroménagers et systèmes intégrés (filtration de l'air, éclairage, cave à vin) avant la remise officielle au client."
+      },
+      "afterSales": {
+        "title": "Service après-vente dédié",
+        "body": "Garantie étendue, contrat de maintenance optionnel, intervention sur site sous 48 heures ouvrées dans les principales villes italiennes. Stock de pièces d'origine pour toute la production historique Binova — même sur des cuisines installées il y a vingt ans."
+      }
+    },
+    "ctaSurvey": "Demander une visite technique",
+    "galleryEyebrow": "Réalisations",
+    "galleryTitleLine1": "Une sélection de",
+    "galleryTitleItalic": "projets clos.",
+    "galleryIntro": "Des appartements de représentation aux résidences multi-étages, des hôtels de luxe aux villas avec vue. Six projets, six langages différents — la même précision d'exécution."
+  },
+
+  "progettazione": {
+    "eyebrow": "Service Binova",
+    "titleLine1": "Conception",
+    "titleItalic": "de cuisines.",
+    "tagline": "Concevoir une cuisine, c'est concevoir l'espace qui l'accueille. Nos architectes vous accompagnent de la première visite en showroom à la réception finale sur chantier.",
+    "approachEyebrow": "Approche",
+    "approachTitle": "Une cuisine n'est pas un meuble. C'est de l'architecture habitée.",
+    "approachBody1": "C'est pourquoi notre processus de conception commence par l'espace, non par le catalogue. Nous étudions d'abord l'environnement, les ouvertures, la lumière, le flux de ceux qui vivront là. Ce n'est qu'ensuite que nous choisissons les finitions et les modèles — car la même collection peut vivre dix vies différentes selon l'endroit où vous la placez.",
+    "approachBody2": "Chaque projet Binova est suivi par un architecte dédié, qui travaille en dialogue avec votre cabinet (ou, si vous n'en avez pas, joue le rôle d'architecte interne pour vous). Plans exécutifs, nomenclatures de matériaux, coordination des électroménagers : tout sur mesure pour le chantier.",
+    "fiveQuestionsEyebrow": "Cinq questions avant de commencer",
+    "questions": {
+      "space": {
+        "title": "Espace disponible",
+        "body": "Combien de mètres carrés réels avons-nous ? Où sont les murs porteurs, les descentes d'eau, les conduits ? L'espace commande les proportions — pas l'inverse."
+      },
+      "use": {
+        "title": "Comment vous l'utiliserez vraiment",
+        "body": "Vous cuisinez tous les jours ou recevez des invités deux fois par mois ? Le design change : une cuisine-laboratoire a des priorités ergonomiques différentes d'une cuisine-scène."
+      },
+      "optimize": {
+        "title": "Ce que vous voulez optimiser",
+        "body": "Les mauvaises cuisines ne sont pas laides — elles sont inefficaces. Nous étudions vos gestes, du frigo au plan de travail au feu, et raccourcissons les trajets que vous ferez des milliers de fois."
+      },
+      "exposed": {
+        "title": "À vue ou dissimulée",
+        "body": "Garde-mangers ouverts comme scénographie. Ou panneaux coulissants qui referment tout dans un mur propre. Deux philosophies opposées, deux vies domestiques opposées."
+      },
+      "budget": {
+        "title": "Budget et priorités",
+        "body": "Nous définissons ensemble où il vaut la peine de dépenser (plans de travail, électroménagers, un îlot en marbre monolithique) et où il vaut mieux économiser. Le budget guide le projet, il ne le limite pas."
+      }
+    },
+    "projectsEyebrow": "Projets",
+    "projectsTitle": "Quatre chantiers,",
+    "projectsItalic": "quatre langages.",
+    "projectsIntro": "Même ADN de conception, solutions complètement différentes selon les habitants et la maison qui accueille la cuisine.",
+    "projectsCTA": "Prendre rendez-vous avec un architecte",
+    "projects": {
+      "mantisBluna": {
+        "name": "Binova Mantis + Bluna",
+        "tag": "Porte du sol au plafond",
+        "desc": "Cuisine installée à Londres avec la technologie de porte Mantis (ép. 1,2 cm en aluminium alvéolaire). Avec ce projet, les hauteurs ne sont plus une contrainte : une porte unique court du sol au plafond, revêtue de marbre Calacatta en arrière-plan."
+      },
+      "lab": {
+        "name": "Binova LAB",
+        "tag": "Verre blanc brillant",
+        "desc": "Le verre blanc brillant comme matériau principal du frontal. Rythme d'étagères horizontales, dialogue avec le chêne du plan de travail. Une solution qui allège visuellement l'espace sans renoncer au volume."
+      },
+      "mantisScava": {
+        "name": "Binova Mantis + Scava",
+        "tag": "Chevrons en bois",
+        "desc": "Portes Mantis 1,2 cm en bois à chevrons. Le contraste entre le bloc sombre de l'îlot et les fonds en marbre Calacatta devient la signature de l'environnement — architecture par soustraction."
+      },
+      "blunaX": {
+        "name": "Binova Bluna X",
+        "tag": "Chêne thermotraité en continuité",
+        "desc": "Un projet de grande classe au cœur de Milan. Îlot en chêne thermotraité qui dialogue avec le séjour, étagère Ice intégrée pour accueillir les boîtes de rangement en bois dessinées par Binova. La cuisine entre en scène comme partie du salon."
+      }
+    }
+  },
+
+  "eventi": {
+    "eyebrow": "Showroom Milan",
+    "titleLine1": "La cuisine comme",
+    "titleItalic": "centre de vie.",
+    "tagline": "Le showroom Binova de Via Durini est une scène vivante : Salone del Mobile, Milan Design Week, showcooking avec des chefs étoilés, rencontres avec les partenaires de la filière.",
+    "featuredEyebrow": "À l'affiche · Milan Design Week 2023",
+    "featuredTitle": "Trois soirées, trois",
+    "featuredItalic": "collaborations.",
+    "archiveEyebrow": "Archive",
+    "archiveTitle": "Tous les",
+    "archiveItalic": "événements",
+    "archiveIntro": "Dix ans de showcooking, de partenariats et de collaborations avec des chefs, des designers et des marques de la filière.",
+    "calendarCTA": "Voulez-vous être informé des prochains événements en showroom ?",
+    "calendarLink": "Écrivez-nous pour recevoir le calendrier"
+  },
+
+  "durini": {
+    "eyebrow": "Le quartier du design",
+    "titleLine1": "Nous ne travaillons",
+    "titleItalic": "pas seuls.",
+    "tagline": "Le showroom de Via Durini est l'invité d'un écosystème. Vingt-quatre partenaires de la filière partagent avec nous le quartier du design milanais — électroménagers, matériaux, lumière, mobilier, ambiance.",
+    "ideaEyebrow": "L'idée",
+    "ideaTitle": "Une cuisine est la somme de centaines de décisions.",
+    "ideaBody1": "Le four, la hotte, le robinet, le plan de travail, la lumière au-dessus de l'îlot, le carrelage de la crédence, les chaises autour de la table. Pour chacune de ces décisions, Binova travaille avec les marques les plus solides et soignées du marché — non pour remplir un catalogue, mais pour garantir au client la cohérence des matériaux, des délais et du service après-vente.",
+    "ideaBody2": "Tous les partenaires ci-dessous sont présents en showroom : vous pouvez les voir en vrai, les toucher, parler avec leurs représentants directement les jours d'événements.",
+    "numbersEyebrow": "Chiffres",
+    "numbers": {
+      "totalPartners": "Partenaires totaux",
+      "categories": "Catégories",
+      "annualEvents": "Événements annuels",
+      "showroomLabel": "Showroom"
+    },
+    "directoryEyebrow": "Annuaire",
+    "directoryTitleLine1": "Tous les",
+    "directoryItalic": "partenaires.",
+    "categories": {
+      "appliances": {
+        "title": "Électroménagers",
+        "desc": "Les marques que nous sélectionnons et intégrons dans nos cuisines. Chaque partenaire est choisi pour sa fiabilité, son design et sa disponibilité dans nos projets contract."
+      },
+      "taps": {
+        "title": "Robinetterie",
+        "desc": "Robinets, mitigeurs et systèmes de distribution : des lignes high-tech aux lignes sculpturales."
+      },
+      "surfaces": {
+        "title": "Matériaux et surfaces",
+        "desc": "Pierres techniques, grès grand format, marbres naturels — partenaires pour les plans de travail, les arrière-plans et les revêtements intégraux."
+      },
+      "lighting": {
+        "title": "Éclairage",
+        "desc": "Luminaires techniques et décoratifs. Voir aussi la page dédiée à Euroluce."
+      },
+      "living": {
+        "title": "Living et mobilier",
+        "desc": "Sièges, tables, bibliothèques. Pour les projets où la cuisine se fond avec le séjour."
+      },
+      "ambient": {
+        "title": "Vert et ambiance",
+        "desc": "Murs végétaux, parfums, objets qui ramènent la nature à la maison."
+      }
+    }
+  },
+
+  "press": {
+    "eyebrow": "Revue de presse",
+    "titleLine1": "Ce qu'ils ont écrit",
+    "titleItalic": "sur nous.",
+    "tagline": "Soixante-six ans de travail ont laissé des traces. Une sélection d'articles, de reportages et d'entretiens parus dans les principaux magazines italiens de design et de lifestyle.",
+    "featuredEyebrow": "À la une",
+    "featuredTitleLine1": "Les titres",
+    "featuredItalic": "de référence.",
+    "featuredIntro": "Trois articles qui racontent le moment actuel de la marque : Salone 2026, showroom Milan, retour du marbre Calacatta.",
+    "readArticle": "Lire l'article",
+    "archiveEyebrow": "Archive",
+    "archiveTitleLine1": "Tous les",
+    "archiveItalic": "articles.",
+    "archiveIntro": "Articles, reportages, entretiens. Ordre chronologique, du plus récent au plus ancien.",
+    "pressInquiry": "Vous êtes journaliste ou auteur ? Pour les demandes presse et collaborations éditoriales, écrivez à"
+  },
+
+  "euroluce": {
+    "eyebrow": "Showroom Milan",
+    "titleLine1": "Lumière et cuisine,",
+    "titleItalic": "dans le même souffle.",
+    "tagline": "Binova accueille depuis toujours dans le showroom de Via Durini les événements de la filière de l'éclairage. D'Euroluce aux présentations saisonnières, la lumière fait partie du projet — jamais un détail a posteriori.",
+    "calendarEyebrow": "Calendrier",
+    "calendarTitleLine1": "Les événements",
+    "calendarItalic": "de la lumière.",
+    "partnersEyebrow": "Marques de la filière",
+    "partnersTitleLine1": "Nos",
+    "partnersItalic": "partenaires lumière.",
+    "partnersIntro": "Quatre marques avec lesquelles nous collaborons en permanence pour intégrer la lumière dans les projets de cuisine."
+  },
+
+  "contacts": {
+    "eyebrow": "Contacts",
+    "titleLine1": "Parlons-en",
+    "titleItalic": "en personne.",
+    "intro": "Chaque projet Binova naît autour d'une architecture et de ceux qui l'habiteront. Écrivez-nous ou appelez-nous : nous vous attribuons un concepteur dédié qui vous guidera de la première visite à l'installation finale.",
+    "showroomEyebrow": "Showroom Milan",
+    "labels": {
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "address": "Adresse",
+      "hours": "Horaires"
+    }
+  },
+
+  "cookie": {
+    "eyebrow": "Cookies",
+    "body": "Nous utilisons des cookies techniques pour le fonctionnement du site et, avec votre consentement, des cookies statistiques pour comprendre comment il est utilisé.",
+    "policyLink": "Politique des cookies",
+    "accept": "Accepter",
+    "reject": "Refuser"
+  },
+
+  "notFound": {
+    "eyebrow": "Page non trouvée",
+    "title1": "Cette page s'est perdue.",
+    "italic": "Pas nos cuisines.",
+    "body": "L'URL que vous cherchez n'existe pas ou a été déplacée. Retournez aux collections ou explorez le showroom de Milan.",
+    "backHome": "Retour aux collections",
+    "visitShowroom": "Visiter le showroom de Milan"
+  },
+
+  "footer": {
+    "tagline": "Cuisines modernes de luxe. Made in Italy depuis 1958. Une marque du groupe Italian Design Brands.",
+    "exploreLabel": "Explorer",
+    "showroomLabel": "Showroom Milan",
+    "copyright": "© {year} Binova — Cubo Design S.r.l. · TVA 01579900679",
+    "privacy": "Confidentialité",
+    "cookie": "Cookies",
+    "legal": "Mentions légales",
+    "accessibility": "Accessibilité"
+  }
+}

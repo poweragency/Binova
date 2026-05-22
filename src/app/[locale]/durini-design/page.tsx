@@ -5,8 +5,8 @@ import { Link } from "@/i18n/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contacts from "@/components/sections/Contacts";
-
-type Locale = "it" | "en";
+import type { LocaleKey } from "@/data/collections";
+import { type Localized, pick } from "@/data/localized";
 
 export async function generateMetadata({
   params,
@@ -23,7 +23,7 @@ export async function generateMetadata({
 
 type Partner = {
   name: string;
-  role: Record<Locale, string>;
+  role: Localized;
   url?: string;
 };
 
@@ -39,55 +39,55 @@ const partnerGroups: { key: CategoryKey; brands: Partner[] }[] = [
   {
     key: "appliances",
     brands: [
-      { name: "Miele", role: { it: "Generation 7000 ad incasso", en: "Generation 7000 built-in" }, url: "https://www.miele.it" },
-      { name: "Bertazzoni", role: { it: "Master Series italiana", en: "Italian Master Series" }, url: "https://www.bertazzoni.com" },
-      { name: "Wolf", role: { it: "Cottura professionale USA", en: "US professional cooking" }, url: "https://www.subzero-wolf.com" },
-      { name: "V-Zug", role: { it: "Vapore + steam svizzero", en: "Swiss steam cooking" }, url: "https://www.vzug.com" },
-      { name: "Sub-Zero", role: { it: "Refrigerazione integrata", en: "Integrated refrigeration" }, url: "https://www.subzero-wolf.com" },
-      { name: "Bora", role: { it: "Aspirazione a induzione", en: "Induction extraction" }, url: "https://www.bora.com" },
+      { name: "Miele", url: "https://www.miele.it", role: { it: "Generation 7000 ad incasso", en: "Generation 7000 built-in", de: "Generation 7000 zum Einbauen", es: "Generation 7000 empotrado", fr: "Generation 7000 encastrable" } },
+      { name: "Bertazzoni", url: "https://www.bertazzoni.com", role: { it: "Master Series italiana", en: "Italian Master Series", de: "Italienische Master Series", es: "Master Series italiana", fr: "Master Series italienne" } },
+      { name: "Wolf", url: "https://www.subzero-wolf.com", role: { it: "Cottura professionale USA", en: "US professional cooking", de: "US-Profi-Kochkunst", es: "Cocción profesional USA", fr: "Cuisson professionnelle USA" } },
+      { name: "V-Zug", url: "https://www.vzug.com", role: { it: "Vapore + steam svizzero", en: "Swiss steam cooking", de: "Schweizer Dampfgaren", es: "Cocción al vapor suiza", fr: "Cuisson vapeur suisse" } },
+      { name: "Sub-Zero", url: "https://www.subzero-wolf.com", role: { it: "Refrigerazione integrata", en: "Integrated refrigeration", de: "Integrierte Kühlung", es: "Refrigeración integrada", fr: "Réfrigération intégrée" } },
+      { name: "Bora", url: "https://www.bora.com", role: { it: "Aspirazione a induzione", en: "Induction extraction", de: "Induktionsabzug", es: "Extracción por inducción", fr: "Aspiration par induction" } },
     ],
   },
   {
     key: "taps",
     brands: [
-      { name: "Quooker", role: { it: "Acqua bollente istantanea", en: "Instant boiling water" }, url: "https://www.quooker.it" },
-      { name: "Nobili", role: { it: "Rubinetteria di design italiana", en: "Italian designer taps" }, url: "https://www.nobili.it" },
-      { name: "MGS", role: { it: "Acciaio scolpito", en: "Sculpted stainless steel" }, url: "https://www.mgstaps.com" },
+      { name: "Quooker", url: "https://www.quooker.it", role: { it: "Acqua bollente istantanea", en: "Instant boiling water", de: "Sofort kochendes Wasser", es: "Agua hirviendo instantánea", fr: "Eau bouillante instantanée" } },
+      { name: "Nobili", url: "https://www.nobili.it", role: { it: "Rubinetteria di design italiana", en: "Italian designer taps", de: "Italienische Designer-Armaturen", es: "Grifería de diseño italiana", fr: "Robinetterie design italienne" } },
+      { name: "MGS", url: "https://www.mgstaps.com", role: { it: "Acciaio scolpito", en: "Sculpted stainless steel", de: "Skulptierter Edelstahl", es: "Acero esculpido", fr: "Acier sculpté" } },
     ],
   },
   {
     key: "surfaces",
     brands: [
-      { name: "Neolith", role: { it: "Sintered stone XXL", en: "XXL sintered stone" }, url: "https://www.neolith.com" },
-      { name: "Marazzi", role: { it: "Ceramica e grès di firma", en: "Signature ceramics and stoneware" }, url: "https://www.marazzi.it" },
-      { name: "Made a Mano", role: { it: "Maioliche artigianali", en: "Handmade majolica" }, url: "https://www.madeamano.com" },
-      { name: "Locherber Milano", role: { it: "Profumi d'ambiente", en: "Home fragrances" }, url: "https://www.locherbermilano.com" },
+      { name: "Neolith", url: "https://www.neolith.com", role: { it: "Sintered stone XXL", en: "XXL sintered stone", de: "XXL gesinterter Stein", es: "Piedra sinterizada XXL", fr: "Pierre frittée XXL" } },
+      { name: "Marazzi", url: "https://www.marazzi.it", role: { it: "Ceramica e grès di firma", en: "Signature ceramics and stoneware", de: "Signature-Keramik und Steingut", es: "Cerámica y gres de firma", fr: "Céramique et grès de signature" } },
+      { name: "Made a Mano", url: "https://www.madeamano.com", role: { it: "Maioliche artigianali", en: "Handmade majolica", de: "Handgefertigte Majolika", es: "Mayólicas artesanales", fr: "Majoliques artisanales" } },
+      { name: "Locherber Milano", url: "https://www.locherbermilano.com", role: { it: "Profumi d'ambiente", en: "Home fragrances", de: "Raumdüfte", es: "Perfumes de ambiente", fr: "Parfums d'ambiance" } },
     ],
   },
   {
     key: "lighting",
     brands: [
-      { name: "Panzeri", role: { it: "Storico partner illuminazione", en: "Historic lighting partner" }, url: "https://www.panzeri.it" },
+      { name: "Panzeri", url: "https://www.panzeri.it", role: { it: "Storico partner illuminazione", en: "Historic lighting partner", de: "Historischer Lichtpartner", es: "Histórico partner de iluminación", fr: "Partenaire lumière historique" } },
     ],
   },
   {
     key: "living",
     brands: [
-      { name: "Miniforms", role: { it: "Arredo e complementi", en: "Furniture and accessories" }, url: "https://www.miniforms.com" },
-      { name: "Colico", role: { it: "Sedie e sgabelli di design", en: "Designer chairs and stools" }, url: "https://www.colicodesign.com" },
-      { name: "Emporio Zani", role: { it: "Curated home accessories", en: "Curated home accessories" } },
-      { name: "Federmobili", role: { it: "Federazione mobile italiana", en: "Italian furniture federation" }, url: "https://www.federmobili.it" },
-      { name: "Memento", role: { it: "Oggetti d'autore", en: "Signature objects" } },
-      { name: "FG Art Design", role: { it: "Arte e quadri custom", en: "Custom art and paintings" } },
-      { name: "London Art", role: { it: "Carte da parati", en: "Wallpaper" }, url: "https://www.londonart.it" },
+      { name: "Miniforms", url: "https://www.miniforms.com", role: { it: "Arredo e complementi", en: "Furniture and accessories", de: "Möbel und Accessoires", es: "Mobiliario y complementos", fr: "Mobilier et accessoires" } },
+      { name: "Colico", url: "https://www.colicodesign.com", role: { it: "Sedie e sgabelli di design", en: "Designer chairs and stools", de: "Designer-Stühle und -Hocker", es: "Sillas y taburetes de diseño", fr: "Chaises et tabourets design" } },
+      { name: "Emporio Zani", role: { it: "Curated home accessories", en: "Curated home accessories", de: "Kuratierte Wohnaccessoires", es: "Accesorios de hogar seleccionados", fr: "Accessoires maison sélectionnés" } },
+      { name: "Federmobili", url: "https://www.federmobili.it", role: { it: "Federazione mobile italiana", en: "Italian furniture federation", de: "Italienischer Möbelverband", es: "Federación italiana de mobiliario", fr: "Fédération italienne du mobilier" } },
+      { name: "Memento", role: { it: "Oggetti d'autore", en: "Signature objects", de: "Signature-Objekte", es: "Objetos de autor", fr: "Objets de signature" } },
+      { name: "FG Art Design", role: { it: "Arte e quadri custom", en: "Custom art and paintings", de: "Maßgeschneiderte Kunst und Bilder", es: "Arte y cuadros a medida", fr: "Art et tableaux sur mesure" } },
+      { name: "London Art", url: "https://www.londonart.it", role: { it: "Carte da parati", en: "Wallpaper", de: "Tapeten", es: "Papeles pintados", fr: "Papiers peints" } },
     ],
   },
   {
     key: "ambient",
     brands: [
-      { name: "VerdeProfilo", role: { it: "Pareti vegetali e moss design", en: "Living walls and moss design" }, url: "https://www.verdeprofilo.com" },
-      { name: "Serafino Zani", role: { it: "Strumenti di cucina di design", en: "Designer kitchen tools" }, url: "https://www.serafinozani.it" },
-      { name: "Euwork", role: { it: "Soluzioni tecnologiche cucina", en: "Kitchen technology solutions" } },
+      { name: "VerdeProfilo", url: "https://www.verdeprofilo.com", role: { it: "Pareti vegetali e moss design", en: "Living walls and moss design", de: "Pflanzenwände und Moos-Design", es: "Paredes vegetales y diseño de musgo", fr: "Murs végétaux et moss design" } },
+      { name: "Serafino Zani", url: "https://www.serafinozani.it", role: { it: "Strumenti di cucina di design", en: "Designer kitchen tools", de: "Designer-Küchenutensilien", es: "Utensilios de cocina de diseño", fr: "Ustensiles de cuisine design" } },
+      { name: "Euwork", role: { it: "Soluzioni tecnologiche cucina", en: "Kitchen technology solutions", de: "Küchentechnologie-Lösungen", es: "Soluciones tecnológicas de cocina", fr: "Solutions technologiques cuisine" } },
     ],
   },
 ];
@@ -99,7 +99,7 @@ export default async function DuriniDesignPage({
 }) {
   const { locale: rawLocale } = await params;
   setRequestLocale(rawLocale);
-  const locale = rawLocale as Locale;
+  const locale = rawLocale as LocaleKey;
   const t = await getTranslations("durini");
   const tNav = await getTranslations("nav");
 
@@ -250,7 +250,7 @@ export default async function DuriniDesignPage({
                           </span>
                         )}
                         <span className="text-[11px] uppercase tracking-[0.28em] text-binova-bone/50">
-                          {brand.role[locale]}
+                          {pick(brand.role, locale)}
                         </span>
                       </li>
                     ))}

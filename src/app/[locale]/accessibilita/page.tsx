@@ -16,7 +16,8 @@ export default async function AccessibilitaPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  if (locale === "en") {
+  // DE/ES/FR fall back to the English copy; IT remains the canonical text.
+  if (locale !== "it") {
     return (
       <LegalLayout
         eyebrow="Accessibility"
