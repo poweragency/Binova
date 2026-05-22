@@ -356,6 +356,10 @@
     }
   },
 
+  "legal": {
+    "lastUpdated": "Dernière mise à jour"
+  },
+
   "cookie": {
     "eyebrow": "Cookies",
     "body": "Nous utilisons des cookies techniques pour le fonctionnement du site et, avec votre consentement, des cookies statistiques pour comprendre comment il est utilisé.",

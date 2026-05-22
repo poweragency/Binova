@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -17,11 +18,12 @@ export default function LegalLayout({
   updated,
   children,
 }: Props) {
+  const t = useTranslations("legal");
+
   return (
     <main className="relative bg-binova-black">
       <Navbar />
 
-      {/* Hero header */}
       <section className="relative overflow-hidden border-b border-white/[0.06] bg-binova-ink px-6 pb-20 pt-32 max-md:pb-12 max-md:pt-24 lg:px-12 lg:pb-28 lg:pt-40">
         <div
           aria-hidden
@@ -49,13 +51,12 @@ export default function LegalLayout({
           )}
           {updated && (
             <p className="mt-8 text-[10px] uppercase tracking-[0.32em] text-binova-bone/40">
-              Ultimo aggiornamento · {updated}
+              {t("lastUpdated")} · {updated}
             </p>
           )}
         </div>
       </section>
 
-      {/* Body */}
       <section className="relative px-6 pb-32 pt-20 max-md:pb-20 max-md:pt-12 lg:px-12 lg:pb-44 lg:pt-24">
         <article className="mx-auto max-w-[760px] space-y-10 text-[15px] leading-relaxed text-binova-bone/75 [&_h2]:font-display [&_h2]:text-binova-bone [&_h2]:text-[clamp(1.4rem,2.4vw,2rem)] [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:font-light [&_h2]:tracking-tight [&_h2:first-child]:mt-0 [&_h3]:font-display [&_h3]:text-binova-bone [&_h3]:text-xl [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:font-light [&_p]:my-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul_li]:my-2 [&_a]:text-binova-gold-soft [&_a:hover]:text-binova-gold [&_a]:underline [&_a]:underline-offset-4 [&_strong]:text-binova-bone [&_strong]:font-medium">
           {children}
