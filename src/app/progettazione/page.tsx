@@ -21,32 +21,32 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "Bluna X · Londra",
+    name: "Binova Mantis + Bluna",
     tag: "Anta da pavimento a soffitto",
     desc:
-      "Cucina Bluna installata in un appartamento di rappresentanza londinese. Tecnologia Anta Mantis (sp. 1,2 cm in alveolare di alluminio): le altezze non sono più un vincolo, una sola anta corre dal pavimento al soffitto.",
-    image: "/images/collections/mantis/g1.jpg",
+      "Cucina montata a Londra con la tecnologia dell'anta Mantis (sp. 1,2 cm in alveolare di alluminio). Con questo progetto le altezze non sono più un vincolo: un'anta unica corre dal pavimento al soffitto, rivestita di marmo Calacatta come fondale.",
+    image: "/images/progettazione/londra.jpg",
   },
   {
-    name: "Mantis + Scava",
+    name: "Binova LAB",
+    tag: "Vetro lucido bianco",
+    desc:
+      "L'utilizzo del vetro lucido bianco come materia principale del frontale. Ritmo di mensole orizzontali, dialogo con il rovere del piano. Una soluzione che alleggerisce visivamente lo spazio senza rinunciare al volume.",
+    image: "/images/progettazione/lab.jpg",
+  },
+  {
+    name: "Binova Mantis + Scava",
     tag: "Spina di pesce in legno",
     desc:
-      "Combinazione di Mantis (struttura leggera) e Scava (sottrazione della materia). Frontale in legno a spina di pesce, top in pietra scura. Un progetto per chi cerca contrasto materico senza rumore visivo.",
-    image: "/images/collections/scava/g1.jpg",
+      "Ante Mantis 1,2 cm in legno a spina di pesce. Il contrasto fra il blocco scuro dell'isola e i fondali in marmo Calacatta diventa la cifra dell'ambiente — architettura per sottrazione.",
+    image: "/images/progettazione/mantis-scava.jpg",
   },
   {
-    name: "Bluna · Mensola Ice",
-    tag: "Acciaio + legno",
+    name: "Binova Bluna",
+    tag: "Mensola Ice in acciaio",
     desc:
-      "Inserimento della mensola Ice — pensata da Binova per ospitare scatole contenitive in legno. Una soluzione che mantiene la pulizia visiva di Bluna aggiungendo profondità funzionale.",
-    image: "/images/collections/bluna/g3.jpg",
-  },
-  {
-    name: "Vesta · Calacatta",
-    tag: "Marmo dal pavimento al soffitto",
-    desc:
-      "Quando il marmo non è rivestimento ma architettura. Lastre Calacatta che corrono integre dal piano al fondale, isola-blocco scolpita nello stesso materiale, Miele integrato.",
-    image: "/images/heritage/atmosphere-2.jpg",
+      "Progetto di gran classe con inserimento della mensola Ice — pensata da Binova per ospitare scatole contenitive in legno. La pianta studia il flusso dell'ambiente fino al millimetro prima di arrivare in cantiere.",
+    image: "/images/progettazione/pianta.jpg",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function ProgettazionePage() {
       {/* Hero */}
       <section className="relative h-[90svh] min-h-[560px] max-md:min-h-[500px] overflow-hidden bg-binova-black">
         <Image
-          src="/images/collections/mantis/g1.jpg"
+          src="/images/progettazione/bluna-x.jpg"
           alt="Progettazione Cucine Binova"
           fill
           priority

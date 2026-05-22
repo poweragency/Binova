@@ -3,10 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { collections, getCollectionBySlug } from "@/data/collections";
+import { getMaterialDescription } from "@/data/materials";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contacts from "@/components/sections/Contacts";
 import GalleryLightbox from "@/components/GalleryLightbox";
+import AccordionItem from "@/components/AccordionItem";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -133,17 +135,11 @@ export default async function CollectionPage({ params }: Props) {
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
               · Materiali firma
             </span>
-            <ul className="mt-6 divide-y divide-white/[0.06] border-y border-white/[0.06]">
+            <ul className="mt-6">
               {(collection.materials ?? []).map((m) => (
-                <li
-                  key={m}
-                  className="flex items-center justify-between py-4 text-binova-bone/85"
-                >
-                  <span className="font-display text-lg">{m}</span>
-                  <span className="text-binova-bone/30" aria-hidden>
-                    +
-                  </span>
-                </li>
+                <AccordionItem key={m} title={m}>
+                  {getMaterialDescription(m)}
+                </AccordionItem>
               ))}
             </ul>
 
