@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 type Phase = "idle" | "playing" | "done";
@@ -18,6 +19,8 @@ export default function IntroExperience({
 }: {
   children: React.ReactNode;
 }) {
+  const t = useTranslations("intro");
+  const tCommon = useTranslations("common");
   const videoRef = useRef<HTMLVideoElement>(null);
   const [phase, setPhase] = useState<Phase>("idle");
   const [isMobile, setIsMobile] = useState(false);
@@ -132,7 +135,7 @@ export default function IntroExperience({
           <button
             onClick={handleEnter}
             className="group absolute inset-0 focus:outline-none"
-            aria-label="Entra nello showroom Binova"
+            aria-label={t("ariaLabel")}
           >
             {/* Door hotspot — position differs per orientation */}
             <span
@@ -153,10 +156,10 @@ export default function IntroExperience({
             >
               <span className="h-[1px] w-12 bg-binova-gold/80 transition-all duration-700 group-hover:w-24" />
               <span className="font-display text-[clamp(1.1rem,1.6vw,1.4rem)] tracking-[0.32em] uppercase text-binova-bone transition-colors duration-500 group-hover:text-binova-gold">
-                Entra
+                {t("enter")}
               </span>
               <span className="text-[10px] uppercase tracking-[0.4em] text-binova-bone/55">
-                Showroom Milano · Via Durini 17
+                {t("subtitle")}
               </span>
             </span>
           </button>
@@ -170,7 +173,7 @@ export default function IntroExperience({
               marginTop: "env(safe-area-inset-top)",
             }}
           >
-            Salta intro →
+            {tCommon("skipIntro")} →
           </button>
         )}
       </div>

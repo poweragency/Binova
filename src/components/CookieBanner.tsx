@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "binova-cookie-consent";
@@ -8,7 +9,8 @@ const STORAGE_KEY = "binova-cookie-consent";
 type Choice = "accepted" | "rejected" | null;
 
 export default function CookieBanner() {
-  const [choice, setChoice] = useState<Choice>("accepted"); // start hidden until we know
+  const t = useTranslations("cookie");
+  const [choice, setChoice] = useState<Choice>("accepted");
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as Choice;
@@ -18,7 +20,6 @@ export default function CookieBanner() {
   const decide = (value: Exclude<Choice, null>) => {
     localStorage.setItem(STORAGE_KEY, value);
     setChoice(value);
-    // Notify any analytics integration listening for the consent state
     window.dispatchEvent(
       new CustomEvent("binova-consent", { detail: value })
     );
@@ -29,7 +30,7 @@ export default function CookieBanner() {
   return (
     <div
       role="dialog"
-      aria-label="Avviso cookie"
+      aria-label={t("eyebrow")}
       aria-describedby="cookie-banner-text"
       className="fixed inset-x-4 bottom-4 z-[180] mx-auto max-w-3xl"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
@@ -38,20 +39,18 @@ export default function CookieBanner() {
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-8">
           <div className="flex-1">
             <span className="text-[10px] uppercase tracking-[0.32em] text-binova-gold/80">
-              · Cookie
+              · {t("eyebrow")}
             </span>
             <p
               id="cookie-banner-text"
               className="mt-2 text-sm leading-relaxed text-binova-bone/75"
             >
-              Usiamo cookie tecnici per il funzionamento del sito e, previo
-              tuo consenso, cookie statistici per capire come viene
-              utilizzato.{" "}
+              {t("body")}{" "}
               <Link
                 href="/cookie"
                 className="text-binova-gold-soft hover:text-binova-gold underline underline-offset-4 transition-colors"
               >
-                Cookie Policy
+                {t("policyLink")}
               </Link>
             </p>
           </div>
@@ -62,14 +61,14 @@ export default function CookieBanner() {
               onClick={() => decide("rejected")}
               className="px-6 py-3 text-[11px] uppercase tracking-[0.32em] text-binova-bone/70 transition-colors hover:text-binova-bone max-md:border max-md:border-binova-bone/20"
             >
-              Rifiuta
+              {t("reject")}
             </button>
             <button
               type="button"
               onClick={() => decide("accepted")}
               className="group flex items-center justify-between gap-3 border border-binova-bone/40 bg-binova-black/40 px-6 py-3 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-all duration-500 hover:border-binova-gold hover:text-binova-gold"
             >
-              Accetta
+              {t("accept")}
               <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
                 →
               </span>

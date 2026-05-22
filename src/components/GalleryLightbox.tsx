@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
  * prev/next, Escape to close. Body scroll-locks while open.
  */
 export default function GalleryLightbox({ images, altPrefix }: Props) {
+  const t = useTranslations("cucine");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const close = () => setOpenIndex(null);
@@ -52,11 +54,11 @@ export default function GalleryLightbox({ images, altPrefix }: Props) {
             type="button"
             onClick={() => setOpenIndex(i)}
             className="group relative block aspect-[3/1] w-full overflow-hidden bg-binova-stone max-md:aspect-[16/10] focus:outline-none"
-            aria-label={`Apri ${altPrefix} — vista ${i + 1} a tutto schermo`}
+            aria-label={t("openImage", { name: altPrefix, n: i + 1 })}
           >
             <Image
               src={src}
-              alt={`${altPrefix} — vista ${i + 1}`}
+              alt={t("viewAlt", { name: altPrefix, n: i + 1 })}
               fill
               quality={92}
               sizes="100vw"
@@ -97,7 +99,7 @@ export default function GalleryLightbox({ images, altPrefix }: Props) {
             <button
               type="button"
               onClick={close}
-              aria-label="Chiudi"
+              aria-label={t("lightbox.close")}
               className="absolute right-6 top-6 z-10 grid h-12 w-12 place-items-center text-binova-bone/70 transition-colors hover:text-binova-bone max-md:right-4 max-md:top-4"
               style={{ marginTop: "env(safe-area-inset-top)" }}
             >
@@ -113,7 +115,7 @@ export default function GalleryLightbox({ images, altPrefix }: Props) {
             <button
               type="button"
               onClick={prev}
-              aria-label="Immagine precedente"
+              aria-label={t("lightbox.prev")}
               className="absolute left-6 top-1/2 z-10 grid h-12 w-12 -translate-y-1/2 place-items-center border border-binova-bone/30 text-binova-bone/70 transition-colors hover:border-binova-gold hover:text-binova-gold max-md:left-3 max-md:h-10 max-md:w-10"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -131,7 +133,7 @@ export default function GalleryLightbox({ images, altPrefix }: Props) {
             <button
               type="button"
               onClick={next}
-              aria-label="Immagine successiva"
+              aria-label={t("lightbox.next")}
               className="absolute right-6 top-1/2 z-10 grid h-12 w-12 -translate-y-1/2 place-items-center border border-binova-bone/30 text-binova-bone/70 transition-colors hover:border-binova-gold hover:text-binova-gold max-md:right-3 max-md:h-10 max-md:w-10"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -150,7 +152,7 @@ export default function GalleryLightbox({ images, altPrefix }: Props) {
               <div className="relative h-full w-full">
                 <Image
                   src={images[openIndex]}
-                  alt={`${altPrefix} — vista ${openIndex + 1}`}
+                  alt={t("viewAlt", { name: altPrefix, n: openIndex + 1 })}
                   fill
                   quality={95}
                   sizes="100vw"

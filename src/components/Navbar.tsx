@@ -1,20 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
-const links = [
-  { label: "Cucine", href: "/" },
-  { label: "Heritage", href: "/heritage" },
-  { label: "Showroom", href: "/showroom" },
-  { label: "Progettazione", href: "/progettazione" },
-  { label: "Contract", href: "/contract" },
-  { label: "Eventi", href: "/eventi" },
-];
-
 function isActive(href: string, pathname: string): boolean {
-  // "Cucine" (root) lights on the home and on any kitchen detail page
   if (href === "/") {
     return pathname === "/" || pathname.startsWith("/cucine");
   }
@@ -22,14 +12,23 @@ function isActive(href: string, pathname: string): boolean {
 }
 
 export default function Navbar() {
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
+  const locale = useLocale();
+  const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const previousPath = useRef(pathname);
 
-  // When the user lands on the home from a different route, force scroll
-  // to top. Next.js scroll-restoration can otherwise replay the position
-  // from a previous visit and drop them mid-page.
+  const links = [
+    { label: t("kitchens"), href: "/" },
+    { label: t("heritage"), href: "/heritage" },
+    { label: t("showroom"), href: "/showroom" },
+    { label: t("design"), href: "/progettazione" },
+    { label: t("contract"), href: "/contract" },
+  ];
+
   useEffect(() => {
     if (previousPath.current !== "/" && pathname === "/") {
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -44,7 +43,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile drawer is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.classList.add("no-scroll");
@@ -54,7 +52,6 @@ export default function Navbar() {
     return () => document.body.classList.remove("no-scroll");
   }, [mobileOpen]);
 
-  // Close drawer when route changes (hash navigation)
   useEffect(() => {
     if (!mobileOpen) return;
     const close = () => setMobileOpen(false);
@@ -62,7 +59,6 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", close);
   }, [mobileOpen]);
 
-  // Close drawer on Escape
   useEffect(() => {
     if (!mobileOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -71,6 +67,11 @@ export default function Navbar() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
+
+  const switchLocale = (next: "it" | "en") => {
+    if (next === locale) return;
+    router.replace(pathname, { locale: next });
+  };
 
   return (
     <>
@@ -95,7 +96,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop nav — active item highlighted gold */}
           <nav className="hidden items-center gap-7 lg:flex xl:gap-9">
             {links.map((link) => {
               const active = isActive(link.href, pathname);
@@ -105,8 +105,6 @@ export default function Navbar() {
                   href={link.href}
                   aria-current={active ? "page" : undefined}
                   onClick={(e) => {
-                    // If we're already on the home and "Cucine" is clicked,
-                    // smooth-scroll to top instead of a no-op navigation
                     if (link.href === "/" && pathname === "/") {
                       e.preventDefault();
                       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -129,29 +127,39 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Desktop right cluster: lang switch + CTA */}
           <div className="hidden items-center gap-6 lg:flex">
-            {/* Lang switcher — IT active, EN points to the official English site */}
             <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.28em]">
-              <span className="text-binova-gold">IT</span>
+              <button
+                type="button"
+                onClick={() => switchLocale("it")}
+                className={
+                  locale === "it"
+                    ? "text-binova-gold"
+                    : "text-binova-bone/55 hover:text-binova-bone transition-colors"
+                }
+              >
+                IT
+              </button>
               <span className="text-binova-bone/30">/</span>
-              <a
-                href="https://en.binova.it"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-binova-bone/55 hover:text-binova-bone transition-colors"
+              <button
+                type="button"
+                onClick={() => switchLocale("en")}
+                className={
+                  locale === "en"
+                    ? "text-binova-gold"
+                    : "text-binova-bone/55 hover:text-binova-bone transition-colors"
+                }
               >
                 EN
-              </a>
+              </button>
             </div>
 
-            {/* Prenota visita CTA */}
             <Link
               href="#contact"
               className="group flex items-center gap-3 text-binova-bone/80 hover:text-binova-gold transition-colors"
             >
               <span className="hidden text-[11px] uppercase tracking-[0.28em] sm:inline">
-                Prenota visita
+                {tCommon("bookVisit")}
               </span>
               <span className="grid h-9 w-9 place-items-center border border-binova-bone/30 transition-all duration-500 group-hover:border-binova-gold group-hover:rotate-45">
                 <span className="h-1.5 w-1.5 bg-binova-bone group-hover:bg-binova-gold transition-colors" />
@@ -159,11 +167,10 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile hamburger — visible only below lg */}
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label={mobileOpen ? "Chiudi menu" : "Apri menu"}
+            aria-label={mobileOpen ? t("closeMenu") : t("openMenu")}
             aria-expanded={mobileOpen}
             aria-controls="mobile-drawer"
             className="grid h-11 w-11 place-items-center border border-binova-bone/30 transition-colors hover:border-binova-bone/60 lg:hidden"
@@ -189,7 +196,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile drawer — only below lg, fully hidden when closed */}
       <div
         id="mobile-drawer"
         aria-hidden={!mobileOpen}
@@ -199,13 +205,11 @@ export default function Navbar() {
             : "pointer-events-none invisible opacity-0"
         }`}
       >
-        {/* Backdrop */}
         <div
           onClick={() => setMobileOpen(false)}
           className="absolute inset-0 bg-binova-black/80 backdrop-blur-md"
         />
 
-        {/* Panel — slides fully out when closed */}
         <nav
           className={`relative flex h-full flex-col bg-binova-black px-6 pt-24 pb-10 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             mobileOpen ? "translate-y-0" : "-translate-y-full"
@@ -216,7 +220,7 @@ export default function Navbar() {
         >
           <div className="flex-1">
             <span className="text-[10px] uppercase tracking-[0.4em] text-binova-gold/80">
-              · Menu
+              · {t("menu")}
             </span>
             <ul className="mt-8 flex flex-col gap-1">
               {links.map((link, i) => {
@@ -276,7 +280,6 @@ export default function Navbar() {
             </ul>
           </div>
 
-          {/* CTA at bottom */}
           <div
             className={`mt-10 flex flex-col gap-4 transition-all duration-700 ${
               mobileOpen
@@ -294,7 +297,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
               className="group flex w-full items-center justify-between border border-binova-bone/30 px-6 py-5 text-[11px] uppercase tracking-[0.32em] text-binova-bone transition-colors hover:border-binova-gold hover:text-binova-gold"
             >
-              Prenota una visita
+              {tCommon("bookVisitFull")}
               <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
                 →
               </span>
@@ -306,16 +309,29 @@ export default function Navbar() {
                 <span>Via Durini 17 · 20122</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-binova-gold">IT</span>
+                <button
+                  type="button"
+                  onClick={() => switchLocale("it")}
+                  className={
+                    locale === "it"
+                      ? "text-binova-gold"
+                      : "text-binova-bone/55 hover:text-binova-bone transition-colors"
+                  }
+                >
+                  IT
+                </button>
                 <span className="text-binova-bone/30">/</span>
-                <a
-                  href="https://en.binova.it"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-binova-bone/55 hover:text-binova-bone transition-colors"
+                <button
+                  type="button"
+                  onClick={() => switchLocale("en")}
+                  className={
+                    locale === "en"
+                      ? "text-binova-gold"
+                      : "text-binova-bone/55 hover:text-binova-bone transition-colors"
+                  }
                 >
                   EN
-                </a>
+                </button>
               </div>
             </div>
           </div>

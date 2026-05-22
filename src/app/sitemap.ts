@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { collections } from "@/data/collections";
+import { routing } from "@/i18n/routing";
 
 const BASE_URL = "https://binova-git-main-poweragency.vercel.app";
 
@@ -32,12 +33,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  return [...staticRoutes, ...kitchenRoutes].map(
-    ({ path, priority, changeFrequency }) => ({
-      url: `${BASE_URL}${path}`,
-      lastModified,
-      changeFrequency,
-      priority,
+  const allRoutes = [...staticRoutes, ...kitchenRoutes];
+
+  // Emit one entry per (locale, route). The default locale gets the bare
+  // path (e.g. /heritage); other locales get the /<locale>/<path> prefix.
+  return routing.locales.flatMap((locale) =>
+    allRoutes.map(({ path, priority, changeFrequency }) => {
+      const localePrefix = locale === routing.defaultLocale ? "" : `/${locale}`;
+      return {
+        url: `${BASE_URL}${localePrefix}${path}`,
+        lastModified,
+        changeFrequency,
+        priority,
+      };
     })
   );
 }
