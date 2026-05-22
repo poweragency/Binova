@@ -59,6 +59,9 @@ export default function IntroExperience({
     if (phase === "done") {
       document.cookie = `${INTRO_SEEN_COOKIE}=1; path=/; Max-Age=${INTRO_COOKIE_MAX_AGE}; SameSite=Lax`;
       videoRef.current?.pause();
+      // Let downstream UI (e.g. the cookie banner) reveal itself once the
+      // intro has cleared, so nothing competes with the cinematic entrance.
+      window.dispatchEvent(new CustomEvent("binova-intro-done"));
     }
   }, [phase]);
 

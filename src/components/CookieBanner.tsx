@@ -5,17 +5,51 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "binova-cookie-consent";
+const INTRO_COOKIE = "binova-intro";
+const HOME_PATH_RE = /^\/(?:(?:en|de|es|fr)\/?)?$/;
 
 type Choice = "accepted" | "rejected" | null;
 
 export default function CookieBanner() {
   const t = useTranslations("cookie");
   const [choice, setChoice] = useState<Choice>("accepted");
+  // Banner stays hidden while the cinematic intro overlay is on screen.
+  // On non-home routes, or when the intro cookie is already set, this
+  // resolves immediately. On a fresh home visit, we wait for the
+  // "binova-intro-done" event dispatched by IntroExperience.
+  const [introReady, setIntroReady] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as Choice;
     setChoice(stored);
+
+    const introSeen = document.cookie
+      .split("; ")
+      .some((c) => c.startsWith(`${INTRO_COOKIE}=`));
+    const onHome = HOME_PATH_RE.test(window.location.pathname);
+    if (introSeen || !onHome) {
+      setIntroReady(true);
+      return;
+    }
+
+    const onIntroDone = () => {
+      // Small delay so the intro overlay finishes its 500ms fade-out
+      // before the banner slides in. Keeps the entrance composed.
+      setTimeout(() => setIntroReady(true), 700);
+    };
+    window.addEventListener("binova-intro-done", onIntroDone);
+    return () => window.removeEventListener("binova-intro-done", onIntroDone);
   }, []);
+
+  // Fade-in once both gates are open (no prior consent + intro is past)
+  useEffect(() => {
+    if (choice === null && introReady) {
+      const id = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(id);
+    }
+    setVisible(false);
+  }, [choice, introReady]);
 
   const decide = (value: Exclude<Choice, null>) => {
     localStorage.setItem(STORAGE_KEY, value);
@@ -25,14 +59,16 @@ export default function CookieBanner() {
     );
   };
 
-  if (choice !== null) return null;
+  if (choice !== null || !introReady) return null;
 
   return (
     <div
       role="dialog"
       aria-label={t("eyebrow")}
       aria-describedby="cookie-banner-text"
-      className="fixed inset-x-4 bottom-4 z-[180] mx-auto max-w-3xl"
+      className={`fixed inset-x-4 bottom-4 z-[180] mx-auto max-w-3xl transition-all duration-500 ease-out ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      }`}
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div className="border border-white/[0.08] bg-binova-stone/95 p-6 shadow-2xl shadow-black/40 backdrop-blur-xl max-md:p-5">
