@@ -42,11 +42,11 @@ const projects: Project[] = [
     image: "/images/progettazione/mantis-scava.jpg",
   },
   {
-    name: "Binova Bluna",
-    tag: "Mensola Ice in acciaio",
+    name: "Binova Bluna X",
+    tag: "Rovere termotrattato in continuità",
     desc:
-      "Progetto di gran classe con inserimento della mensola Ice — pensata da Binova per ospitare scatole contenitive in legno. La pianta studia il flusso dell'ambiente fino al millimetro prima di arrivare in cantiere.",
-    image: "/images/progettazione/pianta.jpg",
+      "Un progetto di gran classe nel cuore di Milano. Isola in rovere termotrattato che dialoga con il living, mensola Ice integrata per ospitare le scatole contenitive in legno disegnate da Binova. La cucina entra in scena come parte del soggiorno.",
+    image: "/images/progettazione/bluna-x.jpg",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function ProgettazionePage() {
       {/* Hero */}
       <section className="relative h-[90svh] min-h-[560px] max-md:min-h-[500px] overflow-hidden bg-binova-black">
         <Image
-          src="/images/progettazione/bluna-x.jpg"
+          src="/images/progettazione/bluna-x-dining.jpg"
           alt="Progettazione Cucine Binova"
           fill
           priority
